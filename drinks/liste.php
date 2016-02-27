@@ -1,9 +1,9 @@
 <?php
-#require_once('scripts/fkt_jkw.php');
+#require_once('../a_common_scripts/fkt_jkw.php');
 
 if($_GET['ansicht']=='Print'){
 	define('FPDF_FONTPATH','font/');
-	require('scripts/fpdf16/fpdf.php');
+	require('../a_common_scripts/fpdf16/fpdf.php');
 
 	class PDF extends FPDF
 	{
@@ -146,7 +146,7 @@ if($_GET['ansicht']=='Print'){
 		return $geld;
 	};
 	// require
-	require_once('scripts/config.php');
+	require_once('../a_common_scripts/config.php');
 	### 1. mal daten laden und sortieren nach dem umsatz vom letzen monat
 	include('collect_data.php');
 	$daten=kolja_sort($daten,9);
@@ -272,7 +272,7 @@ if($_GET['ansicht']=='Print'){
 elseif($_GET['ansicht']=='leer'){ ########### leere tabelle
 	
 	define('FPDF_FONTPATH','font/');
-	require('scripts/fpdf16/fpdf.php');
+	require('../a_common_scripts/fpdf16/fpdf.php');
 
 	class PDF extends FPDF
 	{

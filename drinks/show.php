@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 $id = intval($_GET['id']);
 $del = intval($_GET['del']);

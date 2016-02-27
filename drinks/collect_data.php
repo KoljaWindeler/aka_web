@@ -17,7 +17,7 @@
 ##########spec
 ######## user abfragen ################
 $abfrage="SELECT `ID`, `Name`,`EMAIL`, `LAST_MAIL` FROM `aka_id`";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
+$erg=mysql_query($abfrage);
 $a=0;
 while(list($db_id,$db_name,$db_email,$db_email_pol) = mysql_fetch_row($erg)) {
 	$daten[$a][0]=$db_id; 
@@ -34,7 +34,7 @@ while(list($db_id,$db_name,$db_email,$db_email_pol) = mysql_fetch_row($erg)) {
 for($k=0;$k<$a;$k++) {
 	$daten[$k][2]=0;
 	$abfrage="SELECT `value` FROM `aka_money` WHERE `ID`=".$daten[$k][0]."";
-	$erg=mysql_db_query($db,$abfrage,$verbindung);
+	$erg=mysql_query($abfrage);
 	while(list($db_value) = mysql_fetch_row($erg)) {
 		$daten[$k][2]+=$db_value; };
 		};
@@ -43,7 +43,7 @@ for($k=0;$k<$a;$k++) {
 for($k=0;$k<$a;$k++) {
 	$daten[$k][3]=0;
 	$abfrage="SELECT `value` FROM `aka_verbrauch` WHERE `ID`=".$daten[$k][0]."";
-	$erg=mysql_db_query($db,$abfrage,$verbindung);
+	$erg=mysql_query($abfrage);
 	while(list($db_value) = mysql_fetch_row($erg)) {
 		$daten[$k][3]+=$db_value; };
 		};

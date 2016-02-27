@@ -1,5 +1,5 @@
 <?php
-$heute = mktime(0,0,0,date("m",time()),date("d",time()),date("Y"),time());
+$heute = mktime(0,0,0,date("m",time()),date("d",time()),date("Y"));
 $gestern = $heute - 86400;
 $jetzt = time();
 $db_counter="aka_counter";

@@ -1,7 +1,5 @@
 <?php
-include_once('mailer/class.phpmailer.php');
-//include_once('scripts/config.php');
-//include_once('scripts/fkt_jkw.php');
+include_once('../a_common_mailer/class.phpmailer.php');
 include('collect_data.php');
 
 $daten=kolja_sort($daten,8); // nach guthaben
@@ -70,7 +68,8 @@ Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben.
 		$mail->AddAddress($daten[$a][12], $daten[$a][1]);
 		//$mail->AddAddress('KKoolljjaa@gmail.com');
 		
-		if(!$mail->Send()) 	{	echo '<font color="red"><b>Die Mail an '.$daten[$a][1].' konnte nicht verschickt werden.</b></font><br>';	} 
+		//if(!$mail->Send()) 	{	echo '<font color="red"><b>Die Mail an '.$daten[$a][1].' konnte nicht verschickt werden.</b></font><br>';	} 
+		if(0) 	{	echo '<font color="red"><b>Die Mail an '.$daten[$a][1].' konnte nicht verschickt werden.</b></font><br>';	} 
 		else 	{	echo '<font color="green"><b>Die Mail an '.$daten[$a][1].' ('.$daten[$a][12].') wurde verschickt.</b></font><br>';  };	
 		};
 	};

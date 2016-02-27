@@ -1,9 +1,9 @@
 <?php
 ##################### Daten sammeln und sortieren ################################
 include('collect_data.php');
-if(!empty($HTTP_POST_VARS['sort'])) 	{  $daten=kolja_sort($daten,$HTTP_POST_VARS['sort']); }
+if(!empty($_POST['sort'])) 	{  $daten=kolja_sort($daten,$_POST['sort']); }
 else 														{	$daten=kolja_sort($daten,6); };
-if($HTTP_POST_VARS['dir']==1) 			{  $daten=array_reverse($daten); };
+if($_POST['dir']==1) 			{  $daten=array_reverse($daten); };
 ##################### Daten sammeln und sortieren ################################
 ###### hinweis
 tab_go("100%",250,'left','Kontodaten');
@@ -23,8 +23,8 @@ tab_go("100%",250,'left','&Uuml;bersichtstabelle');
 ##### sortierfelder
 $values="6,3,1,11,8,5";
 $options="Getr&auml;nke ( seit letztem Update ),Getr&auml;nke ( gesamt ),Vorname,Nachname,Kontostand,Letzer Einzahlungsbetrag";
-echo'<form method="POST" action="index.php?'.SID.'"><div align="center"><select name="sort">'.select($values,$options,$HTTP_POST_VARS['sort']).'</select>
-<select name="dir">'.select('0,1','Fallend,Steigend',$HTTP_POST_VARS['dir']).'</select>
+echo'<form method="POST" action="index.php?'.SID.'"><div align="center"><select name="sort">'.select($values,$options,$_POST['sort']).'</select>
+<select name="dir">'.select('0,1','Fallend,Steigend',$_POST['dir']).'</select>
 <input type="submit" name="sortieren" value="sortieren"></center></form>';
 ##### sortierfelder
 ## ###TABELLEN KOPF
