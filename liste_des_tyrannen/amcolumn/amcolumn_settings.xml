@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings> 
+  <depth>20</depth>                                            <!-- [0] (Number) the depth of chart and columns (for 3D effect) -->
+  <angle>20</angle>                                            <!-- [30] (0 - 90) angle of chart area and columns (for 3D effect) -->
+<column>
+
+    <grow_time>3</grow_time>                                  <!-- [0] (Number) grow time in seconds. Leave 0 to appear instantly -->
+    <sequenced_grow>true</sequenced_grow>                     <!-- [false] (true / false) whether columns should grow at the same time or one after another -->    
+                       <!-- [0] (Number) distance from column / bar to the bullet -->
+    <hover_brightness>30</hover_brightness>                   <!-- [0] (from -255 to 255) The column may darken/lighten when the use rolls over it. The intensity may be set here -->                         
+  </column>
+
+  <plot_area>                                                 <!-- PLOT AREA (the area between axes) -->
+    <margins>                                                 <!-- plot area margins -->
+      <left>50</left>                                         <!-- [60](Number / Number%) --> 
+      <top>10</top>                                           <!-- [60](Number / Number%) --> 
+      <right>10</right>                                       <!-- [60](Number / Number%) -->
+      <bottom>10</bottom>                                     <!-- [80](Number / Number%) -->
+    </margins>
+  </plot_area>
+  
+  <grid>                                                      <!-- GRID -->
+    <category>                                                <!-- category axis grid -->                                                     
+      <alpha>5</alpha>                                        <!-- [15] (0 - 100) -->
+	</category>
+    <value>                                                   <!-- value axis grid -->      
+	<alpha>0</alpha>                                        <!-- [15] (0 - 100) -->
+      <fill_color>000000</fill_color>                         <!-- [#FFFFFF] (hex color code) every second area between gridlines will be filled with this color (you will need to set fill_alpha > 0) -->
+      <fill_alpha>5</fill_alpha>                              <!-- [0] (0 - 100) opacity of fill -->
+    </value>
+  </grid>
+  
+  <values>                                                    <!-- VALUES -->
+    <category>                                                <!-- category axis -->
+      <rotate>45</rotate>                                     <!-- [0] (0 - 90) angle of rotation. If you want to rotate by degree from 1 to 89, you must have font.swf file in fonts folder -->      
+    </category>
+  </values>
+  
+  <axes>                                                      <!-- axes -->
+    <category>                                                <!-- category axis -->
+      <width>1</width>                                        <!-- [2] (Number) line width, 0 for hairline -->
+    </category>
+    <value>                                                   <!-- value axis -->
+      <width>1</width>                                        <!-- [2] (Number) line width, 0 for hairline -->
+    </value>
+  </axes>  
+  
+  <graphs>  
+    <graph gid="1">                                            <!-- if you are using XML data file, graph "gid" must match graph "gid" in data file -->
+      <type>column</type>                                      <!-- [column] (column/line) -->                  
+      <color>B92F2F</color>                                    <!-- [] (hex color code) -->
+      
+
+      <balloon_text>
+        <![CDATA[Verbrauch {series}: {value}C]]>  
+      </balloon_text>       
+    </graph>
+
+</settings>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <!-- <message bg_color="#BBBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+	<series>
+		<value xid="100">1950</value>
+		<value xid="101">1951</value>
+		<value xid="102">1952</value>
+		
+	</series>
+	<graphs>
+		<graph gid="1">
+			<value xid="100" color="#318DBD">-0.307</value>
+			<value xid="101" color="#318DBD">-0.168</value>
+			<value xid="102" color="#318DBD">-0.073</value>
+		</graph>
+	
+	</graphs>
+</chart>
