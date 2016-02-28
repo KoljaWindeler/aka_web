@@ -11,7 +11,7 @@ echo	'<table width="100%" class="singletable">
 ##### TABELLEN KOPF
 ##### TABELLEN schleife 
 $abfrage="SELECT `ID`, `date`,`Filename`, `Bes` FROM `aka_pro_list` WHERE `date`>='".$_GET['from']."' AND `date`<='".$_GET['to']."' ORDER BY `date` desc";
-$erg=mysql_db_query($db,$abfrage,$verbindung);	$b=0;
+$erg=mysql_query($abfrage);	$b=0;
 while(list($db_id,$db_date,$db_filename,$db_bes) = mysql_fetch_row($erg)) {
 ##### TABELLEN berechnen 
 	# Hintergrundfarbe
