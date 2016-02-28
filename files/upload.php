@@ -7,11 +7,13 @@ $beschr_post='';
 if(!empty($_POST['upload'])) {
 	$uploadDir = '/var/www/aka_web/files/files/';
 	$uploadFile = $uploadDir.$_FILES['userfile']['name'];
+	$uploadFile = strtolower($uploadFile);
+	$extension = pathinfo($uploadFile);
 	$date=mktime(0,0,0,$_POST['monat'],$_POST['tag'],$_POST['jahr']);
 	//if($_FILES['userfile']['type'] == 'application/pdf'){
-	if (1==1) { // filetyp klappt zuoft nicht
-		$uploadFile = strtolower($uploadFile);
-		$extension = pathinfo($uploadFile);
+	if($extension['extension']=="pdf"){
+	//if(pathinfo($filename, PATHINFO_EXTENSION); $_FILES['userfile']['type'] == 'application/pdf'){
+	//if (1==1) { // filetyp klappt zuoft nicht
 		$extension = ".".$extension['extension'];
 		$uploadFile = str_replace($extension,'_'.time().$extension,strtolower($uploadFile));
 		

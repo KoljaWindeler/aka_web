@@ -8,8 +8,11 @@ if(!empty($_POST['upload'])) {
 	$uploadDir = '/var/www/aka_web/protokoll/files/';
 	$uploadFile = $uploadDir.$_FILES['userfile']['name'];
 	$date=mktime(0,0,0,$_POST['monat'],$_POST['tag'],$_POST['jahr']);
-	//if($_FILES['userfile']['type'] == 'application/pdf'){
-	if (1==1) { // filetyp klappt zuoft nicht
+        $ext_uploadFile = strtolower($uploadFile);
+        $ext_extension = pathinfo($ext_uploadFile);
+        $date=mktime(0,0,0,$_POST['monat'],$_POST['tag'],$_POST['jahr']);
+        //if($_FILES['userfile']['type'] == 'application/pdf'){
+        if($ext_extension['extension']=="pdf"){
 		$uploadFile = str_replace('.pdf','',strtolower($uploadFile));
 		$uploadFile = str_replace(' ','_',$uploadFile.'_'.time().'.pdf');
 		echo "<pre>";
