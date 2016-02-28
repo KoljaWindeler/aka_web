@@ -6,10 +6,10 @@ $time=time();
 list($max)=mysql_fetch_row(mysql_query("SELECT `id` FROM `aka_id` ORDER BY `id` DESC LIMIT 0,1"));
 for($a=0;$a<=$max;$a++){	$changed[$a]=0; }
 
-if(isset($HTTP_POST_VARS['senden'])) {
+if(isset($_POST['senden'])) {
 	for($a=0;$a<=$max;$a++){
-		if(!empty($HTTP_POST_VARS['addmoney_'.$a]) AND $HTTP_POST_VARS['addmoney_'.$a] <> '0') {
-			$money=str_replace(",",".",$HTTP_POST_VARS['addmoney_'.$a]);
+		if(!empty($_POST['addmoney_'.$a]) AND $_POST['addmoney_'.$a] <> '0') {
+			$money=str_replace(",",".",$_POST['addmoney_'.$a]);
 			$changed[$a]=1;
 			if(!mysql_query( "INSERT INTO `aka_money` (`id` ,`value`, `date`) VALUES ('".$a."', '".$money."', ".$time.")" )){
 				echo 'ohoh';

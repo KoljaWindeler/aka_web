@@ -2,10 +2,10 @@
 if($_SESSION['session_user_typ']<>$aka_tyran_admin_state && $_SESSION['session_user_typ']<>$aka_super_admin_state) { exit('falsches passwort'); };
 ##################### security ################################
 include('collect_data.php');
-include_once('mailer/class.phpmailer.php');
+include_once('../a_common_mailer/class.phpmailer.php');
 ##################### incoming post ############################
 $error=0;
-if(!empty($HTTP_POST_VARS['save'])) {
+if(!empty($_POST['save'])) {
 	if(mysql_query( "INSERT INTO `aka_tasks` (`id`, `desc`, `title`, `status`, `date_pre`, `date_post`) VALUES ('','".$_POST['task_desc']."', '".$_POST['task_cap']."', '0', '".time()."', '');")){
 		list($task_id)=mysql_fetch_row(mysql_query("SELECT id from `aka_tasks` order by id desc"));
 		if(mysql_query( "UPDATE `aka_tasks_user` SET `ACTIVE_TASK`='".$task_id."' WHERE `id`='".$_POST['user_id']."';" )){

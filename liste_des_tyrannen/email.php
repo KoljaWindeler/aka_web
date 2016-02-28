@@ -1,5 +1,5 @@
 <?php
-include_once('mailer/class.phpmailer.php');
+include_once('../a_common_mailer/class.phpmailer.php');
 include('collect_data.php');
 $daten=kolja_sort($daten,8); // nach guthaben
 $daten=array_reverse($daten); // aufsteigend

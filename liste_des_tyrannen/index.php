@@ -1,12 +1,13 @@
 <?php
 ########### vorbereitungen ###############
-session_start($SID);
-include('scripts/config.php');
-include('scripts/fkt_jkw.php');
+session_start();
+if(!isset($SID)) { $SID = session_id(); };
+include('../a_common_scripts/config.php');
+include('../a_common_scripts/fkt_jkw.php');
 include('design/box.php');
 htmlhead('Aka Arbeitsliste','',0);
-include("scripts/jsc.php");
-include('scripts/sec.php');
+include("../a_common_scripts/jsc.php");
+include('../a_common_scripts/sec.php');
 ########### vorbereitungen ###############
 ########### menü ###############
 echo '<table border=0 width="100%"><tr><td width="5%">&nbsp;</td><td width="90%"  class="head">';

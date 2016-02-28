@@ -2,8 +2,8 @@
 if($_SESSION['session_user_typ']<>$aka_tyran_admin_state && $_SESSION['session_user_typ']<>$aka_super_admin_state) { exit('falsches passwort'); };
 ##################### security ################################
 ##################### daten annehmen ###########################
-if(isset($HTTP_POST_VARS['senden'])) {
-	if(!mysql_query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$HTTP_POST_VARS['addbill_'.$a]."', ".$time.")" )){
+if(isset($_POST['senden'])) {
+	if(!mysql_query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
 		echo 'ohoh';
 		};
 	};
