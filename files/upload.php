@@ -5,7 +5,7 @@ tab_go("100%",250,'left','Upload');
 $beschr_post='';
 #################### upload verarbeiten #########################
 if(!empty($_POST['upload'])) {
-	$uploadDir = '/www/htdocs/w00b8c3b/files/files/';
+	$uploadDir = '/var/www/aka_web/files/files/';
 	$uploadFile = $uploadDir.$_FILES['userfile']['name'];
 	$date=mktime(0,0,0,$_POST['monat'],$_POST['tag'],$_POST['jahr']);
 	//if($_FILES['userfile']['type'] == 'application/pdf'){

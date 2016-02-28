@@ -1,12 +1,12 @@
 <?php
 ########### vorbereitungen ###############
 session_start($SID);
-require_once('scripts/config.php');
-require_once('scripts/sec.php');
-require_once('scripts/fkt_jkw.php');
+require_once('../a_common_scripts/config.php');
+require_once('../a_common_scripts/sec.php');
+require_once('../a_common_scripts/fkt_jkw.php');
 require_once('design/box.php');
 htmlhead('Aka Dateiverwaltung','',0);
-require_once("scripts/jsc.php");
+require_once("../a_common_scripts/jsc.php");
 ########### vorbereitungen ###############
 ########### menü ###############
 echo '<table border=0 width="100%"><tr><td width="5%">&nbsp;</td><td width="90%"  class="head">';

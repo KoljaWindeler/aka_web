@@ -1,5 +1,5 @@
 <?php
-include('scripts/config.php');
+include('../a_common_scripts/config.php');
 
 $db_filename=$_GET['file'];
 list($clicks)=mysql_fetch_row(mysql_query("SELECT `clicks` FROM aka_pro_clicks WHERE `Filename`='".basename($db_filename)."' LIMIT 0,1;"));
