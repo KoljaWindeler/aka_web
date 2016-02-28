@@ -1,0 +1,5 @@
+AuthUserFile /www/htdocs/w00b8c3b/portal/usage/.htpasswd
+AuthGroupFile /dev/null
+AuthName 'ByPassword'
+AuthType Basic
+require valid-user
