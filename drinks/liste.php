@@ -14,7 +14,7 @@ if($_GET['ansicht']=='Print'){
 		$this->SetFont('Arial','',11);
 		//Move to the right
 		//Framed title
-		$this->Cell(195,5,'Alle aktuellen Kontost'.chr(228).'nde per eMail oder online auf www.akakraft.de/drinks | Passwort: akapw ',0,0,'C');
+		$this->Cell(195,5,'Alle aktuellen Kontost'.chr(228).'nde per eMail oder online auf portal.akakraft.de | Passwort: akapw ',0,0,'C');
 		//Line break
 		$this->Ln();
 		$this->Cell(195,5,'Falls ihr euch (noch) nicht in der Liste befindet, tragt euch einfach in die leeren Zeilen am Ende ein.',0,0,'C');

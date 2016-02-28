@@ -1,6 +1,6 @@
 <?php
-include('scripts/config.php');
-include('scripts/fkt_jkw.php');
+include('../a_common_scripts/config.php');
+include('../a_common_scripts/fkt_jkw.php');
 
 include('collect_data.php');
 $daten=kolja_sort($daten,8); // nach guthaben
