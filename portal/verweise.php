@@ -7,7 +7,7 @@ htmlhead('Aka Portal','',0);
 echo'
 <table border=0 width="100%"><tr><td width="5%">&nbsp;</td><td width="90%"  class="head">
 <div style="float:left;">
-<a target="Daten" href="../drinks2/" class="head">Zur Getr&auml;nkeabrechnung</a> &nbsp; | &nbsp;
+<a target="Daten" href="../drinks/" class="head">Zur Getr&auml;nkeabrechnung</a> &nbsp; | &nbsp;
 <a target="Daten" href="../liste_des_tyrannen/" class="head">Zur Liste des Tyrannen</a> &nbsp; | &nbsp;
 <a target="Daten" href="../protokoll/" class="head">Zu den Protokollen</a> &nbsp; | &nbsp;
 <a target="Daten" href="../files/" class="head">Zu den Dateiuploads</a> &nbsp; | &nbsp;

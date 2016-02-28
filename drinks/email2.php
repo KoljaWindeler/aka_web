@@ -63,15 +63,15 @@ for ($a=0;$a<=$max_user;$a++) {
 		$text=$firstname.' ,beim Getr&auml;nkesystem ist etwas schief gelaufen, bitte leite diese zur&uuml;ck an den Absender.';
 
 		if($mode==1){
-			$text='Hallo '.$firstname.', soeben wurden die Getr&auml;nkestriche in das <a href="http://portal.akakraft.de/drinks2/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>) &uuml;bertragen.<br>
+			$text='Hallo '.$firstname.', soeben wurden die Getr&auml;nkestriche in das <a href="http://portal.akakraft.de/drinks/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>) &uuml;bertragen.<br>
 		Nach Abzug deiner '.$current_user[6].' Striche liegt dein neuer Kontostand nun bei  <b><font color="#'.$totalmoney_text_color.'"><u>'.$current_user[8].' eur</u></b></font> ! <br>
 			<br>Vielen Dank das du genug Geld vorh&auml;lst. Bur mit einem gemeinsamen Guthaben neue Getr&auml;nke bestellen k&ouml;nnen.<br>';
 		} else if($mode==2){
-			$text='Hallo '.$firstname.', soeben wurden die Getr&auml;nkestriche in das <a href="http://portal.akakraft.de/drinks2/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>) &uuml;bertragen.<br>
+			$text='Hallo '.$firstname.', soeben wurden die Getr&auml;nkestriche in das <a href="http://portal.akakraft.de/drinks/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>) &uuml;bertragen.<br>
 		Nach Abzug deiner '.$current_user[6].' Striche liegt dein neuer Kontostand nun bei  <b><font color="#'.$totalmoney_text_color.'"><u>'.$current_user[8].' eur</u></b></font> ! <br>
 		Bitte gib dir M&uuml;he immer mindestens +10 eur auf deinem Konto zu haben, da wir nur mit einem gemeinsamen Guthaben neue Getr&auml;nke bestellen k&ouml;nnen.<br>';
 		} else if($mode==3){
-			$text='Hallo '.$firstname.', soeben wurden die Getr&auml;nkestriche in das <a href="http://portal.akakraft.de/drinks2/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>) &uuml;bertragen.<br>
+			$text='Hallo '.$firstname.', soeben wurden die Getr&auml;nkestriche in das <a href="http://portal.akakraft.de/drinks/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>) &uuml;bertragen.<br>
 		Nach Abzug deiner '.$current_user[6].' Striche liegt dein neuer Kontostand nun bei  <b><font color="#'.$totalmoney_text_color.'"><u>'.$current_user[8].' eur</u></b></font> ! <br><br><u>Daher ist diese Mail als Mahnung zu verstehen.</u><br><br> Lade bitte dein Konto wieder auf &uuml;ber +10 eur auf,da wir nur mit einem gemeinsamen Guthaben neue Getr&auml;nke bestellen k&ouml;nnen.<br>
 		Solltest dein Konto am '.date('d.M.Y',time()+10*86400).' noch immer Schulden aufweisen werde ich dir leider 5 eur Mahngeb&uuml;hren aufschreiben m&uuml;ssen.<br>';
 		} else if($mode==4){
@@ -99,7 +99,7 @@ for ($a=0;$a<=$max_user;$a++) {
 		$common_footer='<br><br><div style="font-weight:normal; font-size:80%;">
 		Falls du neu sein solltest hier unser Ablauf/Regeln:<br>
 		<ul>
-		<li>Wir z&auml;hlen in unregelm&auml;&szlig;igen Abst&auml;nden die Striche auf der Getr&auml;nkeliste und &uuml;bertragen diese in das <a href="http://portal.akakraft.de/drinks2/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>)</li>
+		<li>Wir z&auml;hlen in unregelm&auml;&szlig;igen Abst&auml;nden die Striche auf der Getr&auml;nkeliste und &uuml;bertragen diese in das <a href="http://portal.akakraft.de/drinks/index.php"><span style="color: #eeeeee !important;" >Online System</span></a> (<i>PW: akapw</i>)</li>
 		<li>Du bekommst eine pers&ouml;nliche Mail mit deinem Guthaben an deine E-Mail Adresse <span style="color: #eeeeee !important;" >'.$current_user[12].'</span> zugestellt. </li>
 		<li>Solltest du <u>weniger als +10 eur</u> auf deinem Konto haben, &uuml;berweise bitte genug Geld um im n&auml;chsten Zeitraum nicht ins Minus zu fallen.</li>
 			<li>Falls du sogar <u>mehr als 5 eur Schulden</u> haben solltest greift z&uuml;s&auml;tzlich unsere "Mahnungsregel": 

@@ -1,11 +1,11 @@
 <?php
 session_start($SID);
-include('../drinks2/scripts/config.php');
-include('../drinks2/scripts/fkt_jkw.php');
-include('../drinks2/design/box.php');
+include('../a_common_scripts/config.php');
+include('../a_common_scripts/fkt_jkw.php');
+include('../drinks/design/box.php');
 htmlhead('Aka Rallye','',1);
-include("../drinks2/scripts/jsc.php");
-include('../drinks2/collect_data.php');
+include("../a_common_scripts/jsc.php");
+include('../drinks/collect_data.php');
 $daten=kolja_sort($daten,1);
 $daten=array_reverse($daten);
 
@@ -48,7 +48,7 @@ echo '<body text="#000055">';
 tab_box("650",100,'center','Aka Rallye 2015',
 '<table width="100%">
 <tr>
-	<td><img src="../drinks2/img/Logo.gif"></td>
+	<td><img src="../drinks/img/Logo.gif"></td>
 	<td valign="center"><font size="+4"><b>Aka Rallye 2015</b></font></center></td>
 </tr>
 <tr><td colspan="2" align="center">

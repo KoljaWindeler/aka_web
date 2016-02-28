@@ -2,7 +2,7 @@
 $time=time();
 
 
-// http://portal.akakraft.de/drinks2/cli.php?action=add&name=Kolja%20Windeler&amount=6.83
+// http://portal.akakraft.de/drinks/cli.php?action=add&name=Kolja%20Windeler&amount=6.83
 if($_GET['action']=="add" && !empty($_GET['name']) && !empty($_GET['amount'])){
 	if($_GET['c']!=$_GET['a']*$_GET['a']+$_GET['b'] || empty($_GET['c'])){
 		exit("Error 5");

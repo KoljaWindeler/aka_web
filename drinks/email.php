@@ -52,7 +52,7 @@ for ($a=0;$a<=$max_user;$a++) {
 		$body    = '<html><body>Hallo '.str_replace(' ','',str_replace($daten[$a][11],'',$daten[$a][1])).', <br><br>'.$add_text.'<br>
  Dein akutelles Guthaben liegt bei:<br><b><font color="'.$bg_guthaben.'"><u>'.$daten[$a][8].' eur</u></b></font><br><br>
 Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben. <br>Allzeit guten Durst.<br>
-<a href="http://portal.akakraft.de/drinks2/index.php">http://portal.akakraft.de/drinks2/index.php</a> | <b>PW: </b>akapw<br><hr>
+<a href="http://portal.akakraft.de/drinks/index.php">http://portal.akakraft.de/drinks/index.php</a> | <b>PW: </b>akapw<br><hr>
 <b><u>Kontodaten</u></b><br>
 <b>Name:</b> Kolja Windeler<br>
 <b>IBAN:</b> DE61 1203 0000 1014 9192 50<br>
@@ -68,8 +68,7 @@ Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben.
 		$mail->AddAddress($daten[$a][12], $daten[$a][1]);
 		//$mail->AddAddress('KKoolljjaa@gmail.com');
 		
-		//if(!$mail->Send()) 	{	echo '<font color="red"><b>Die Mail an '.$daten[$a][1].' konnte nicht verschickt werden.</b></font><br>';	} 
-		if(0) 	{	echo '<font color="red"><b>Die Mail an '.$daten[$a][1].' konnte nicht verschickt werden.</b></font><br>';	} 
+		if(!$mail->Send()) 	{	echo '<font color="red"><b>Die Mail an '.$daten[$a][1].' konnte nicht verschickt werden.</b></font><br>';	} 
 		else 	{	echo '<font color="green"><b>Die Mail an '.$daten[$a][1].' ('.$daten[$a][12].') wurde verschickt.</b></font><br>';  };	
 		};
 	};
