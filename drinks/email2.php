@@ -1,5 +1,5 @@
 <?php
-include_once('mailer/class.phpmailer.php');
+include_once('../a_common_mailer/class.phpmailer.php');
 
 // datan sammeln
 include('collect_data.php');
@@ -145,7 +145,7 @@ for ($a=0;$a<=$max_user;$a++) {
 		} else {	
 			echo '<font color="green"><b>Die Mail an '.$current_user[1].' ('.$current_user[12].') wurde verschickt.</b></font><br>';  
 		};	
-	}	elseif($changed[$current_user[0]]==1 && empty($current_user[12])	) { // // das oben wir ausgeführt wenn der user ein/auszahlungen hatte das hier unten wenn keine email
+	}	elseif($changed[$current_user[0]]==1 && empty($current_user[12])	) { //das oben wir ausgefuert wenn der user ein/auszahlungen hatte das hier unten wenn keine email
 		echo '<font color="red"><b>Die Mail an '.$current_user[1].' konnte nicht verschickt werden,da sich keine Adresse in der Datenbank befindet.</b></font><br>';
 	};
 };

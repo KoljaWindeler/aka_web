@@ -12,8 +12,8 @@ if($_GET['action']=="add" && !empty($_GET['name']) && !empty($_GET['amount'])){
 		if($amount>0 && $amount<500){
 			#echo "zahl gefunden ".$amount."<br>";
 
-			include('scripts/config.php');
-			include('scripts/fkt_jkw.php');
+			include('../a_common_scripts/config.php');
+			include('../a_common_scripts/fkt_jkw.php');
 			include('collect_data.php');
 
 			$res=get_id_for_name($_GET['name'],$daten); // get id to name	
@@ -45,18 +45,18 @@ if($_GET['action']=="add" && !empty($_GET['name']) && !empty($_GET['amount'])){
 		exit("Exit 1");
 	}
 } else if($_GET['action']=="hb"){ 
-	include('scripts/config.php');
-	include('scripts/fkt_jkw.php');
+	include('../a_common_scripts/config.php');
+	include('../a_common_scripts/fkt_jkw.php');
 	$request="UPDATE aka_hb SET hb_ts =".$time." WHERE id=1 LIMIT 1";
 	mysql_query($request);
 	exit("exit 10");
 } else if($_GET['action']=="hb_check"){
-	include('scripts/config.php');
-	include('scripts/fkt_jkw.php');
+	include('../a_common_scripts/config.php');
+	include('../a_common_scripts/fkt_jkw.php');
 	$request="SELECT `hb_ts` FROM `aka_hb`  WHERE `id`=1 LIMIT 0,1";
 	list($ts)=mysql_fetch_row(mysql_query($request));	
 	if($time-$ts>5*86400){	// more then 5 days
-		include_once('mailer/class.phpmailer.php');
+		include_once('../a_common_mailer/class.phpmailer.php');
 		$mail    = new PHPMailer();
 		$body    = '<html><body>Alert: no heartbeat for 5 days</body></html>';
 		$body    = eregi_replace("[\]",'',$body);
