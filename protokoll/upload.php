@@ -26,7 +26,7 @@ if(!empty($_POST['upload'])) {
 				#echo "Hier sind die Fehler informationen:\n";
 				#print_r($_FILES);
 				########### email ##############
-				include_once('mailer/class.phpmailer.php');
+				include_once('../a_common_mailer/class.phpmailer.php');
 				$mail    = new PHPMailer();
 				$mail->From = "KKoolljjaa@googlemail.com";
 				$mail->FromName = "Kolja Windeler";

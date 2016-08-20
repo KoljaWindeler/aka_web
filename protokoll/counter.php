@@ -20,7 +20,7 @@ if(mysql_num_rows(mysql_query("SELECT time,typ FROM `".$db_counter."` WHERE typ<
 	};
 
 $Allelines=mysql_num_rows(mysql_query("SELECT time,typ FROM `".$db_counter."` WHERE typ<>'9'"));
-list($grossezahl2) = mysql_fetch_row(mysql_query("SELECT time,typ FROM `".$db_counter."` WHERE typ='9'")); 
+list($grossezahl) = mysql_fetch_row(mysql_query("SELECT time,typ FROM `".$db_counter."` WHERE typ='9'")); 
 $ges=$Allelines+$grossezahl;
 
 $gerade = $jetzt - 3600*2;

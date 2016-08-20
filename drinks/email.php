@@ -52,7 +52,7 @@ for ($a=0;$a<=$max_user;$a++) {
 		$body    = '<html><body>Hallo '.str_replace(' ','',str_replace($daten[$a][11],'',$daten[$a][1])).', <br><br>'.$add_text.'<br>
  Dein akutelles Guthaben liegt bei:<br><b><font color="'.$bg_guthaben.'"><u>'.$daten[$a][8].' eur</u></b></font><br><br>
 Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben. <br>Allzeit guten Durst.<br>
-<a href="http://portal.akakraft.de/drinks/index.php">http://portal.akakraft.de/drinks/index.php</a> | <b>PW: </b>akapw<br><hr>
+<a href="https://akaweb.illuminum.de/drinks/">Online-System</a> | <b>PW: </b>akapw<br><hr>
 <b><u>Kontodaten</u></b><br>
 <b>Name:</b> Kolja Windeler<br>
 <b>IBAN:</b> DE61 1203 0000 1014 9192 50<br>
