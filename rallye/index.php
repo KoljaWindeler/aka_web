@@ -35,24 +35,24 @@ if(!empty($_POST['send'])){
         list($db)=mysql_fetch_row($qry);
         if($db>0){ // update
             #echo "update:";
-            mysql_query("UPDATE `d00b711e`.`rallye` SET `id` = '".$group."' WHERE `rallye`.`name` ='".$name."' LIMIT 1 ;");
+            mysql_query("UPDATE `rallye` SET `id` = '".$group."' WHERE `rallye`.`name` ='".$name."' LIMIT 1 ;");
         } else { // insert
             #echo "insert";
-            mysql_query("INSERT INTO `d00b711e`.`rallye` (`id` ,`name`)VALUES ('".$group."','".$name."');");
+            mysql_query("INSERT INTO `rallye` (`id` ,`name`)VALUES ('".$group."','".$name."');");
         }
     };
 }
 
 echo '<body text="#000055">';
 
-tab_box("650",100,'center','Aka Rallye 2015',
+tab_box("650",100,'center','Aka Rallye 2016',
 '<table width="100%">
 <tr>
 	<td><img src="../drinks/img/Logo.gif"></td>
-	<td valign="center"><font size="+4"><b>Aka Rallye 2015</b></font></center></td>
+	<td valign="center"><font size="+4"><b>Aka Rallye 2016</b></font></center></td>
 </tr>
 <tr><td colspan="2" align="center">
-am <b>Samstag, der 27. Juni 2015</b> findet die diesjährige Rallye der Akademischen Gruppe für Kraftfahrwesen an der Universität Hannover e.V. (AKAKRAFT) statt.<br>
+am <b>Samstag, der 17.09.2016</b> findet die diesjährige Rallye der Akademischen Gruppe für Kraftfahrwesen an der Universität Hannover e.V. (AKAKRAFT) statt.<br>
 <br>
 Start und Ziel der diesjährigen Rallye ist das <b>Gebäude 1108, Leibniz Universität Hannover, Im Moore 11b, 30167 Hannover</b>.<br>
 Wir treffen uns um <b>9 Uhr</b>, spätestens gegen 15 Uhr sollten auch die letzten Teams wieder da sein.<br>
@@ -67,7 +67,6 @@ Alle TeilnehmerInnen müssen mindestens 18 Jahre alt und im Besitz einer gültig
 <br>
 - Pro Person ist eine Startgebühr von 10 Euro zu entrichten. Die Startgebühr beinhaltet Getränke <br>
 und Essen bei der gemeinsamen Feier im Anschluss an die Rallye.<br>
-- Es wird diesmal einen Snackpoint auf der Strecke geben, bei dem ein kleiner Imbiss gereicht wird.<br>
 - Für die weitere Verpflegung während der Rallye sind die Teams selbst verantwortlich.<br>
 <br>
 <br>
@@ -78,7 +77,7 @@ noch andere gefährden. Deshalb ist während der gesamten Rallye unbedingt die S
 Der Verein übernimmt keine Haftung für eventuelle Personen- und/oder Sachschäden!<br>
 <br>
 <br>
-<b><u>Anmeldeschluss ist Mittwoch, der 24. Juni 2015!</u></b><br>
+<b><u>Anmeldeschluss ist der 14.09.2016!</u></b><br>
 <br>
 </font></b><br><br><br></td></tr>
 </table>
