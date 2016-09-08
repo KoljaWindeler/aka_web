@@ -1,8 +1,8 @@
 <?php
 #############################Sql Login################
-$db='database';
-$db_user = 'user';
-$db_pw = 'password';
+$db='akaweb';
+$db_user = 'akaweb';
+$db_pw = 'GNaZr8xbCUxy4UQe';
 $host = 'localhost';
 #############################Sql Login################
 ?>
