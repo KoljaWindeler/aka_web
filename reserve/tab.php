@@ -125,8 +125,14 @@ echo'<form method="POST" action="index.php?'.SID.'"><div align="center"><select 
 <input type="submit" name="sortieren" value="sortieren"></center></form>';*/
 ##### sortierfelder
 ## ###TABELLEN KOPF
-echo	'<table width="100%" class="singletable" cellpadding="0">
-			<tr><th>Nr</td><th>Von wann</th><th>Bis wann</th><th>Wo</th><th>Wer</td><th>Warum</th><th>Wann angemeldet</th><th>Entfernen</th></tr>';
+echo	'<table width="100%" class="singletable" cellpadding="0"><tr><th>Nr</td><th>Von wann</th><th>Bis wann</th><th>Wo</th><th>Wer</td>';
+if($_SESSION['session_user_typ']!=$aka_reserve_watcher_state){
+	echo '<th>Warum</th>';
+};
+echo '<th>Wann angemeldet</th>';
+if($_SESSION['session_user_typ']!=$aka_reserve_watcher_state){
+	echo '<th>Entfernen</th></tr>';
+};
 ##### TABELLEN KOPF
 ### daten
 unset($daten); $a=0;
@@ -160,11 +166,17 @@ if($a>0){
 			<td'.$bg_color.'>'.$fett_a.$red_a.date("d-m-Y H:i",$datum['von']).$fett_e.$red_e.'</td>
 			<td'.$bg_color.'>'.$fett_a.$red_a.date("d-m-Y H:i",$datum['bis']).$fett_e.$red_e.'</td>
 			<td'.$bg_color.'>'.$fett_a.$red_a.$datum['ort'].$fett_e.$red_e.'</td>
-			<td'.$bg_color.'>'.$fett_a.$red_a.$datum['person'].$fett_e.$red_e.'</td>
-			<td'.$bg_color.'>'.$fett_a.$red_a.$datum['grund'].$fett_e.$red_e.'</td>
-			<td'.$bg_color.'>'.$fett_a.$red_a.date("H:i:s d-m-Y",$datum['time_create']).$fett_e.$red_e.'</td>
-			<td'.$bg_color.'><a href="index.php?delete='.$datum['id'].'" onclick="return confirmLink(this, \'Bitte nur eigene Reservierungen entfernen. Deine ID wird geloggt!\')">Entfernen</a></td>
-		      </tr>';
+			<td'.$bg_color.'>'.$fett_a.$red_a.$datum['person'].$fett_e.$red_e.'</td>';
+
+		if($_SESSION['session_user_typ']!=$aka_reserve_watcher_state){
+			echo'<td'.$bg_color.'>'.$fett_a.$red_a.$datum['grund'].$fett_e.$red_e.'</td>';
+		}
+
+		echo '	<td'.$bg_color.'>'.$fett_a.$red_a.date("H:i:s d-m-Y",$datum['time_create']).$fett_e.$red_e.'</td>';
+		if($_SESSION['session_user_typ']!=$aka_reserve_watcher_state){
+			echo '<td'.$bg_color.'><a href="index.php?delete='.$datum['id'].'" onclick="return confirmLink(this, \'Bitte nur eigene Reservierungen entfernen. Deine ID wird geloggt!\')">Entfernen</a></td>';
+		}
+		echo   '</tr>';
 	##### TABELLEN anzeigen
 		$b++;
 		};

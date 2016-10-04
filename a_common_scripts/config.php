@@ -25,6 +25,10 @@ while(list($db_id,$db_bedeutung,$db_wert) = mysql_fetch_row($erg)) {
 		$aka_tyran_pw=$db_wert;
 	if($db_bedeutung=="aka_reserve_pw")
 		$aka_reserve_pw=$db_wert;
+	if($db_bedeutung=="aka_reserve_watcher_pw")
+		$aka_reserve_watcher_pw=$db_wert;
+
+
 	if($db_bedeutung=="aka_files_admin_state")
 		$aka_files_admin_state=$db_wert;
 	if($db_bedeutung=="aka_drinks_admin_state")
@@ -37,5 +41,7 @@ while(list($db_id,$db_bedeutung,$db_wert) = mysql_fetch_row($erg)) {
 		$aka_reserve_admin_state=$db_wert;
 	if($db_bedeutung=="aka_super_admin_state")
 		$aka_super_admin_state=$db_wert;
+	if($db_bedeutung=="aka_reserve_watcher_state")
+		$aka_reserve_watcher_state=$db_wert;
 };
 ?>

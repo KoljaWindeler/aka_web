@@ -24,11 +24,14 @@ if(!empty($_POST['pw']))
 	elseif($_POST['pw']==$aka_reserve_pw) {
 		//session_register('session_user_typ');
 		$_SESSION['session_user_typ']=$aka_reserve_admin_state; }
+	elseif($_POST['pw']==$aka_reserve_watcher_pw) {
+		//session_register('session_user_typ');
+		$_SESSION['session_user_typ']=$aka_reserve_watcher_state; }
 	elseif($_POST['pw']==$aka_super_admin_pw) {
 		//session_register('session_user_typ');
 		$_SESSION['session_user_typ']=$aka_super_admin_state; };
 		
-	if($_POST['pw']==$aka_pw OR $_POST['pw']==$aka_reserve_pw OR $_POST['pw']==$aka_super_admin_pw) {
+	if($_POST['pw']==$aka_pw OR $_POST['pw']==$aka_reserve_pw OR $_POST['pw']==$aka_super_admin_pw OR $_POST['pw']==$aka_reserve_watcher_pw) {
 //		//session_register('session_key');
 		$_SESSION['session_key']=rand(0,99999);
 		mysql_query("INSERT INTO `sec` ( `id` ,  `date` , `ip` , `key` ) VALUES ( NULL , '".time()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['session_key']."');");
