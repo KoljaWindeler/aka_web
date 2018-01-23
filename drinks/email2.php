@@ -116,8 +116,8 @@ for ($a=0;$a<=$max_user;$a++) {
 		Die &Uuml;berweisungen werden automatisiert anhand des Absenders zugeodnet. Wenn du f&uuml;r jemand anderen Geld &uuml;berweisen m&ouml;chtest, muss der Betreff mit den Buchstaben "xxx" beginnen, gefolgt von dessen Namen. Sonst wird das Geld deinem eigenen Konto gutgeschrieben.<br>
 		<br>
 		<b><u>Kontodaten</u></b><br>
-		<b>Name:</b> Kolja Windeler<br>
-		<b>IBAN:</b> DE61 1203 0000 1014 9192 50<br>
+		<b>Name:</b> AKAKraft<br>
+		<b>IBAN:</b> DE83 2519 0001 0550 9904 01<br>
 		</div>
 
 		<br>

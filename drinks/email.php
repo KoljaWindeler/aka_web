@@ -54,8 +54,8 @@ for ($a=0;$a<=$max_user;$a++) {
 Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben. <br>Allzeit guten Durst.<br>
 <a href="https://akaweb.illuminum.de/drinks/">Online-System</a> | <b>PW: </b>akapw<br><hr>
 <b><u>Kontodaten</u></b><br>
-<b>Name:</b> Kolja Windeler<br>
-<b>IBAN:</b> DE61 1203 0000 1014 9192 50<br>
+<b>Name:</b> Aka Kraft<br>
+<b>IBAN:</b> DE83 2519 0001 0550 9904 01<br>
 <b>Wichtig!</b></u>: Wenn ihr f&uuml;r jemand anderen Geld &uuml;berweist muss der Betreff mit den Buchstaben "xxx" beginnen, gefolgt vom Namen<br>
 </body></html>';
 		$body    = eregi_replace("[\]",'',$body);
