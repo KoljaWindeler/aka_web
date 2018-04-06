@@ -8,11 +8,8 @@ if($_POST['dir']==1) 			{  $daten=array_reverse($daten); };
 ###### hinweis
 tab_go("100%",250,'left','Kontodaten');
 echo '<table border="0" width="100%">
-<tr><td width="150"><u><b>Name</b></u>:</td><td width="*"> Kolja Windeler</td></tr>
-<tr><td><u><b>Kontonummer</b></u>:</td><td> 1014919250</td></tr>
-<tr><td><u><b>Bankleitzahl</b></u>:</td><td> 12030000</td></tr>
-<tr><td><u><b>IBAN</b></u>:</td><td>DE61 1203 0000 1014 9192 50</td></tr>
-<tr><td><u><b>BIC</b></u>:</td><td>BYLADEM 1001 </td></tr>
+<tr><td width="150"><u><b>Name</b></u>:</td><td width="*">AKAKraft</td></tr>
+<tr><td><u><b>IBAN</b></u>:</td><td>DE83 2519 0001 0550 9904 01</td></tr>
 <tr><td><u><b>Wichtig!</b></u>:</td><td>Wenn ihr f&uuml;r jemand anderen Geld &uuml;berweist muss der Betreff mit den Buchstaben "xxx" beginnen, gefolgt vom Namen</td></tr>
 </table>';
 tab_end();
