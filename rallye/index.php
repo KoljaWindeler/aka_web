@@ -45,14 +45,14 @@ if(!empty($_POST['send'])){
 
 echo '<body text="#000055">';
 
-tab_box("650",100,'center','Aka Rallye 2017',
+tab_box("650",100,'center','Aka Rallye 2018',
 '<table width="100%">
 <tr>
 	<td><img src="../drinks/img/Logo.gif"></td>
-	<td valign="center"><font size="+4"><b>Aka Rallye 2017</b></font></center></td>
+	<td valign="center"><font size="+4"><b>Aka Rallye 2018</b></font></center></td>
 </tr>
 <tr><td colspan="2" align="center">
-am <b>Samstag, der 14.10.2017</b> findet die diesjährige Rallye der Akademischen Gruppe für Kraftfahrwesen an der Universität Hannover e.V. (AKAKRAFT) statt.<br>
+am <b>Samstag, der 07.07.2018</b> findet die diesjährige Rallye der Akademischen Gruppe für Kraftfahrwesen an der Universität Hannover e.V. (AKAKRAFT) statt.<br>
 <br>
 Start und Ziel der diesjährigen Rallye ist das <b>Gebäude 1108, Leibniz Universität Hannover, Im Moore 11b, 30167 Hannover</b>.<br>
 Wir treffen uns um <b>9 Uhr</b>, spätestens gegen 15 Uhr sollten auch die letzten Teams wieder da sein.<br>
@@ -77,7 +77,7 @@ noch andere gefährden. Deshalb ist während der gesamten Rallye unbedingt die S
 Der Verein übernimmt keine Haftung für eventuelle Personen- und/oder Sachschäden!<br>
 <br>
 <br>
-<b><u>Anmeldeschluss ist der 10.10.2017!</u></b><br>
+<b><u>Anmeldeschluss ist der 03.07.2018!</u></b><br>
 <br>
 </font></b><br><br><br></td></tr>
 </table>
