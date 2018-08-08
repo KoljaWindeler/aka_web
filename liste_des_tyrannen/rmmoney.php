@@ -59,8 +59,8 @@ for($b=0;$b<count($daten);$b++){
 };
 
 $gewinn=$summe_getraenke*0.15;
-$durchsatz_aus=$summe_getraenke*0.6;
-$durchsatz_ein=$summe_getraenke*0.75;
+$durchsatz_aus=$summe_getraenke*0.65;
+$durchsatz_ein=$summe_getraenke*0.80;
 echo '</table>
 <br>Sollstand: '.$summe_geld.' &euro; ( Konto + Best&auml;nde in der AKA )<br>
 <!--Getr&auml;nkedurchsatz gesamt: '.$summe_getraenke.' Flaschen<br>
