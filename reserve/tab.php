@@ -5,9 +5,9 @@ $options[1]='Grube links';
 $options[2]='Mehrzweckarbeitsplatz';
 $options[3]='linke B&uuml;hne';
 $options[4]='rechte B&uuml;hne';
-//$options[5]='Garage links';
-//$options[6]='Garage rechts';
-//$options[7]='Pr&uuml;fst&auml;nde';
+$options[5]='Empore 1';
+$options[6]='Empore 2';
+$options[7]='Empore 3';
 
 $max_time=array();
 $max_time[0]=86400*7*2;
