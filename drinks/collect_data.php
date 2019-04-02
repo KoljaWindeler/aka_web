@@ -67,7 +67,7 @@ for($k=0;$k<$a;$k++) {
 ######## striche  letzter abbuchen abfragen ################
 ######## guthaben ################
 for($k=0;$k<$a;$k++) {
-	$daten[$k][8]=convert2money(round(100*($daten[$k][2]-0.80*$daten[$k][3]))/100);
+	$daten[$k][8]=convert2money(round(100*($daten[$k][2]-0.75*$daten[$k][3]))/100);
 	};
 ######## guthaben ################
 ######## ranking / aktuell ################

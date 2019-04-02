@@ -60,7 +60,7 @@ if(!isset($_GET['showall'])) {
 		###### guthaben berechnen #########
 		for($i=0;$i<=$k-11;$i++){
 			if($eintrag[$i][2]=='-')  {	$kontostand+=$eintrag[$i][1]; }
-			elseif ($eintrag[$i][1]=='-') { $kontostand-=$eintrag[$i][2]*0.80; };
+			elseif ($eintrag[$i][1]=='-') { $kontostand-=$eintrag[$i][2]*0.75; };
 			};
 		###### guthaben berechnen #########
 		} ### hier max 10 auswählen
@@ -87,7 +87,7 @@ for($a=$min;$a<=$max;$a++){
 		}
 	elseif ($eintrag[$a][1]=='-') {
 		$text='Getr&auml;nkeabrechnung <i>( '.$eintrag[$a][2].' Striche * 0,75 &euro; )</i>';
-		$betrag=convert2money('-'.$eintrag[$a][2]*0.80);
+		$betrag=convert2money('-'.$eintrag[$a][2]*0.75);
 		$datum=date("d.m.Y",$eintrag[$a][0]);
 		$kontostand+=$betrag; };
 	$kontostand=convert2money($kontostand);
