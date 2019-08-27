@@ -3,7 +3,7 @@ if($_SESSION['session_user_typ']<>$aka_drinks_admin_state && $_SESSION['session_
 ##################### security ################################
 ##################### eingabe auswerten #########################
 $time=time();
-list($max)=mysql_fetch_row(mysql_query("SELECT `id` FROM `aka_id` ORDER BY `id` DESC LIMIT 0,1"));
+list($max)=mysqli_fetch_row($mysqli->query("SELECT `id` FROM `aka_id` ORDER BY `id` DESC LIMIT 0,1"));
 for($a=0;$a<=$max;$a++){	$changed[$a]=0; }
 
 if(isset($_POST['senden'])) {

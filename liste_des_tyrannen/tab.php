@@ -27,7 +27,7 @@ foreach ($daten as $index => $datum) {
 	$c=$b+1;
 	
 	//get desc of task
-	if(!empty($datum[3])){	list($task_desc)=mysql_fetch_row(mysql_db_query($db,"SELECT `title` FROM `aka_tasks` WHERE `id`=".$datum[3].";",$verbindung));}
+	if(!empty($datum[3])){	list($task_desc)=mysqli_fetch_row($mysqli->query("SELECT `title` FROM `aka_tasks` WHERE `id`=".$datum[3].";"));}
 	else { $task_desc=''; };
 	
 	if(!empty($datum[3]) AND $datum[3]!=0){ $aktuelle_aufgabe='<a href="index.php?mod=show&id='.$datum[3].'">'.$task_desc.'</a>'; }

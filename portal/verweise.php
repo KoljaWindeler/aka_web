@@ -1,5 +1,5 @@
 <?php
-session_start($SID);
+session_start();
 require_once('scripts/fkt_jkw.php');
 require_once('design/box.php');
 htmlhead('Aka Portal','',0);
@@ -13,7 +13,7 @@ echo'
 <a target="Daten" href="../files/" class="head">Zu den Dateiuploads</a> &nbsp; | &nbsp;
 <a target="Daten" href="../reserve/" class="head">Zu dem Reservierungssystem</a> &nbsp; | &nbsp;
 <a target="Daten" href="startseite.php" class="head">Zum Start</a>
-</div><div style="float:right;">v 0.1b</div><br>
+</div><div style="float:right;">v 0.2b</div><br>
 <hr style="height:0;  border-bottom:1px dotted #000000; border-top: 0px;">
 </td><td width="5%">&nbsp;</td></tr></table>';
 

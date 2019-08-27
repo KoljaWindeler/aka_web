@@ -11,8 +11,8 @@ echo	'<table width="100%" class="singletable">
 ##### TABELLEN KOPF
 ##### TABELLEN schleife 
 $abfrage="SELECT `ID`, `date`,`Filename`, `Bes` FROM `aka_file_list` WHERE `date`>='".$_GET['from']."' AND `date`<='".$_GET['to']."' ORDER BY `date` desc";
-$erg=mysql_db_query($db,$abfrage,$verbindung);	$b=0;
-while(list($db_id,$db_date,$db_filename,$db_bes) = mysql_fetch_row($erg)) {
+$erg=$mysqli->query($abfrage);	$b=0;
+while(list($db_id,$db_date,$db_filename,$db_bes) = mysqli_fetch_row($erg)) {
 ##### TABELLEN berechnen 
 	# Hintergrundfarbe
 	if($b%2==1) { $bg_color='class="gray"'; } else { $bg_color=""; };
@@ -35,8 +35,8 @@ while(list($db_id,$db_date,$db_filename,$db_bes) = mysql_fetch_row($erg)) {
 	else {
 		$new=date('d.m.Y',$db_date); };
 	# clicks
-	list($clicks)=mysql_fetch_row(mysql_query("SELECT `clicks` FROM aka_pro_clicks WHERE `Filename`='".basename($db_filename)."' LIMIT 0,1;"));
-	if(mysql_num_rows(mysql_query("SELECT `clicks` FROM aka_pro_clicks WHERE `Filename`='".basename($db_filename)."' LIMIT 0,1;"))==0) { $clicks =0; };
+	list($clicks)=mysqli_fetch_row($mysqli->query("SELECT `clicks` FROM aka_pro_clicks WHERE `Filename`='".basename($db_filename)."' LIMIT 0,1;"));
+	if(mysqli_num_rows($mysqli->query("SELECT `clicks` FROM aka_pro_clicks WHERE `Filename`='".basename($db_filename)."' LIMIT 0,1;"))==0) { $clicks =0; };
 ##### TABELLEN berechnen
 ##### TABELLEN anzeige	
 	echo '<tr>	<td '.$bg_color.'># '.$b.'</td>
@@ -51,7 +51,7 @@ while(list($db_id,$db_date,$db_filename,$db_bes) = mysql_fetch_row($erg)) {
 						<td '.$bg_color.'>'.$db_bes.'</td></tr>';
 ##### TABELLEN anzeigen
 	};
-if(mysql_num_rows(mysql_query($abfrage))<1) { 
+if(mysqli_num_rows($mysqli->query($abfrage))<1) {
 echo '<tr><td colspan="4" align="center"><center>Keine Eintr&auml;ge verf&uuml;gbar.</center></td></tr>'; };
 ##### TABELLEN schleife 
 echo '</table>';

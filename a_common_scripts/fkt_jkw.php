@@ -1,13 +1,17 @@
 <?php
+$css ="";
+$suchtr="";
 function find_and_hack($post_text)
 	{
 	$nok=1;
 	while($nok==1)
 			{
+				$such_str="";
 			while($post_text[0]==' ')	{$post_text=substr($post_text,1); }; 						## leerzeichen vorne weg
 			$wo=strpos($post_text,' ');											## such das nächste freizeichen
 			if ($wo === false)												# falls keins da ist gut
-				{ 
+				{
+
 				$such_str.=','.$post_text;
 				$nok=0; 
 				}													# beende schleife
@@ -136,10 +140,11 @@ function checkmail($email,$modus) // use "email => emailadresse" modus: 0=true/f
 	};
 
 function select($values,$options,$selected)
-	// Useage: <option value="$value" ?selected? >$options</option>
+	// Usage: <option value="$value" ?selected? >$options</option>
 	// Option { String mit "," getrennt  /  Array }
 	// Value { String mit "," getrennt  /  Array  /  Startint  / Leer (Start=0) }
 	{
+
 	if(!is_array($options)) { $options=explode(',',$options); };
 
 	if(is_int($values)) 		{ $b=$values;	unset($values);	for($a=0;$a<count($options);$a++)	$values[$a]=$a+$b;		}
@@ -147,12 +152,14 @@ function select($values,$options,$selected)
 	elseif(!is_array($values)) 	{ 									$values=explode(',',$values); 	};
 
 	unset($result,$add);
-	for($a=0;$a<count($values) ;$a++)
+	$result ="";
+	for($a=0;$a<count($options) ;$a++)
 		{
 		if($values[$a]==$selected)	
 			{ $add = ' selected '; }
 		else
 			{ $add = ''; };
+
 		$result .= '<option value="'.$values[$a].'"'.$add.'>'.$options[$a].'</option>';
 		};
 	return $result;
@@ -880,7 +887,7 @@ function java_cal($select_time_activ,$from,$to,$from_mini,$to_max,$name,$button)
                 <col width="40"/>
             </colgroup>
 	    <tr>
-		<th rowspan="2" style="valign:top"><input type="hidden" name="arc" value="1"><b>From:</b></th>
+		<th rowspan="2" style="vertical-align:top"><input type="hidden" name="arc" value="1"><b>From:</b></th>
 		<td valign="bottom"><input type="text" size="3" id="j_from'.$name.'-dd" name="j_from'.$name.'-dd" value="'.$from_day.'" maxlength="2"  '.$select_time_activ.' style="width:20px"/></td>
 		<td valign="bottom"><input type="text" size="3" id="j_from'.$name.'-mm" name="j_from'.$name.'-mm" value="'.$from_month.'" maxlength="2"  '.$select_time_activ.' style="width:20px"/></td>
 		<td valign="bottom"><input type="text" size="3" id="j_from'.$name.'-yyyy" name="j_from'.$name.'-yyyy" value="'.$from_year.'" maxlength="4"  '.$select_time_activ.' style="width:40px"/></td>
@@ -1104,12 +1111,12 @@ function jcaf($obj,$prop,$value){
 */
 function get_box_color($ident,$id){
     if(empty($ident)){
-        list($ident)=oci_list($conn,"SELECT `ident` FROM `rfm_box` where id = '".$id."';");
+        list($ident)=oci_parse($conn,"SELECT `ident` FROM `rfm_box` where id = '".$id."';");
     }
     if($debug && empty($ident)){
         return 1; //
     };
-    return 0;
+    return 1;
 }
 
 /* This function returns a javascript calendar using jquery
@@ -1122,7 +1129,7 @@ function get_box_color($ident,$id){
  * $from_mini = time of first date
  * $to_max = time of last date
  * $name = unique(!) identifier for the calendar
- * $fields = show H:i:s fields [ comma seperated string, CAN contain "h","i","s"] e.g to show hours and seconds 'h,s'
+ * $fields = show H:i:s fields [ comma separated string, CAN contain "h","i","s"] e.g to show hours and seconds 'h,s'
  * $submit_on_change = boolean, if true the form will be submitted as soon as the value of one of the times changes
  *
  * 
@@ -1141,7 +1148,8 @@ function java_cal2($select_time_activ,$from,$to,$from_mini,$to_max,$name,$fields
     if(!isset($jquery_included)){
         global $jquery_included;
         $jquery_included=true;
-    
+
+        $css="";
         $css.='
         <link type="text/css" href="javascript/jquery-ui-1.8.9.custom/css/redmond/jquery-ui-1.8.9.custom.css" rel="Stylesheet" />	
         <!--<script type="text/javascript" src="javascript/jquery-ui-1.8.9.custom/js/jquery-1.4.2.min.js"></script>-->

@@ -1,5 +1,5 @@
 <?php
-session_start($SID);
+session_start();
 require_once('design/box.php');
 htmlhead('AkAKraft','','');
 echo	'<table style="height: 100%; width: 100%" border="0" ><tr><td valign="middle" align="center"><img src="img/Logo.gif"><br />AKAKraft<br /><br /><br />

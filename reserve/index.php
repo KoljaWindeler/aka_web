@@ -1,6 +1,9 @@
 <?php
 ########### vorbereitungen ###############
-session_start($SID);
+if(!isset($_SESSION))
+{
+    $SID=session_start();
+}
 include('../a_common_scripts//config.php');
 include('../a_common_scripts//fkt_jkw.php');
 include('design/box.php');
@@ -20,7 +23,7 @@ echo'<div style="float:right;"><a href="index.php?'.SID.'" class="head">&Uuml;be
 //			<a href="index.php?mod=fail&'.SID.'" class="head">Aufgabe versaut</a> &nbsp; | &nbsp; ';
 //};
 	echo'
-<a href="index.php?logout=1&'.$SID.'" class="head">Logout</a> &nbsp; v 0.1b</div></td><td width="5%">&nbsp;</td></tr><tr><td>&nbsp;</td><td>';
+<a href="index.php?logout=1&'.$SID.'" class="head">Logout</a> &nbsp; v 0.2b</div></td><td width="5%">&nbsp;</td></tr><tr><td>&nbsp;</td><td>';
 ########### menü ###############
 ########### reinladen ###############
 include('tab.php');

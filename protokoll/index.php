@@ -1,6 +1,11 @@
 <?php
 ########### vorbereitungen ###############
-session_start($SID);
+if(!isset($_SESSION))
+{
+	$SID=session_start();
+}
+## TODO find out the correct way instead of just setting ""
+$_GET['mod']="";
 require_once('../a_common_scripts/config.php');
 require_once('../a_common_scripts/sec.php');
 require_once('../a_common_scripts/fkt_jkw.php');
@@ -35,10 +40,11 @@ if($_SESSION['session_user_typ']==$aka_protokoll_admin_state || $_SESSION['sessi
 	echo'<a href="index.php?mod=upload&'.SID.'" class="head">Upload</a> &nbsp; | &nbsp; ';
 	};
 echo'
-<a href="index.php?logout=1" class="head">Logout</a> &nbsp; v 1.1b</div><br>';
+<a href="index.php?logout=1" class="head">Logout</a> &nbsp; v 1.2b</div><br>';
 #tab_end();
 echo	'</td><td width="5%">&nbsp;</td></tr><tr><td>&nbsp;</td><td>';
 ########### menü ###############
+
 ########### reinladen ###############
 if($_GET['mod']=='upload')		 	{	include('upload.php'); 			}
 elseif($_GET['mod']=='edit') 		{	include('edit.php');				}

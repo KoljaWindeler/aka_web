@@ -1,18 +1,23 @@
 <?php
-session_start($SID);
+if(!isset($_SESSION))
+{
+	$SID=session_start();
+}
 
 ############## tiddyup ###
 $time=time()-10*60*60; # 10 Std
-mysql_query("DELETE FROM `sec`  WHERE `date`<".$time.";");
+$mysqli->query("DELETE FROM `sec`  WHERE `date`<".$time.";");
 ############## tiddyup ###
 
 ############# logout ####
-if($_GET['logout']==1) { 
-	mysql_query("DELETE FROM `sec` WHERE `key`=".$_SESSION['session_key'].";");
-	unset($_SESSION['session_key']);
-	session_unset();
-	$msg='Erfolgreich ausgeloggt.';
+if(isset($_GET['logout'])) {
+	if ($_GET['logout'] == 1) {
+		$mysqli->query("DELETE FROM `sec` WHERE `key`=" . $_SESSION['session_key'] . ";");
+		unset($_SESSION['session_key']);
+		session_unset();
+		$msg = 'Erfolgreich ausgeloggt.';
 	};
+}
 ############# logout ####
 
 if(!empty($_POST['pw_files']))
@@ -31,7 +36,7 @@ if(!empty($_POST['pw_files']))
 	if($_POST['pw_files']==$aka_pw OR $_POST['pw_files']==$aka_files_pw OR $_POST['pw_files']==$aka_super_admin_pw) {
 		//session_register('session_key');
 		$_SESSION['session_key']=rand(0,99999);
-		mysql_query("INSERT INTO `sec` ( `id` ,  `date` , `ip` , `key` ) VALUES ( NULL , '".time()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['session_key']."');");
+		$mysqli->query("INSERT INTO `sec` ( `id` ,  `date` , `ip` , `key` ) VALUES ( NULL , '".time()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['session_key']."');");
 		}
 	else{
 		$msg='Passwort falsch';
@@ -41,6 +46,7 @@ if(!empty($_POST['pw_files']))
 ################################################# GUI #################################################
 if(empty($_SESSION['session_key']))
 	{
+		$msg="";
 	require_once('design/box.php');
 	htmlhead('AkAKraft Dateiupload Login','','');
 	echo	'<table style="height: 100%; width: 100%" border="0" ><tr><td valign="middle" align="center"><img src="img/Logo.gif"><br /><br /><br /><br />
