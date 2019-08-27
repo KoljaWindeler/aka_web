@@ -63,7 +63,7 @@ if(!empty($_POST['save'])){
 	};
 } elseif(!empty($_GET['delete'])){
 	$sql="UPDATE `aka_reserve` SET `active` = '0',`ip_delete`='".$_SERVER['REMOTE_ADDR']."',`time_delete`=".time()." WHERE `aka_reserve`.`id` =".$_GET['delete']." LIMIT 1 ;";
-	if($mysqli->query( $sql )){
+	if(!$mysqli->query( $sql )){
 		echo 'ohoh';
 		echo '<hr>'.$sql.'<hr>';
 	} else {
