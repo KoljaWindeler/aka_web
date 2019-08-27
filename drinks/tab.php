@@ -1,9 +1,13 @@
 <?php
+
+## TODO find out the correct way instead of just setting 0
+
 ##################### Daten sammeln und sortieren ################################
 include('collect_data.php');
 if(!empty($_POST['sort'])) 	{  $daten=kolja_sort($daten,$_POST['sort']); }
 else 														{	$daten=kolja_sort($daten,6); };
-if($_POST['dir']==1) 			{  $daten=array_reverse($daten); };
+if(!empty($_POST['dir']) && $_POST['dir']==1) 			{  $daten=array_reverse($daten); };
+
 ##################### Daten sammeln und sortieren ################################
 ###### hinweis
 tab_go("100%",250,'left','Kontodaten');
@@ -20,6 +24,11 @@ tab_go("100%",250,'left','&Uuml;bersichtstabelle');
 ##### sortierfelder
 $values="6,3,1,11,8,5";
 $options="Getr&auml;nke ( seit letztem Update ),Getr&auml;nke ( gesamt ),Vorname,Nachname,Kontostand,Letzer Einzahlungsbetrag";
+if(empty($_POST['sort'])&&empty($_POST['dir']))
+{
+	$_POST['sort']=0;
+	$_POST['dir']=0;
+}
 echo'<form method="POST" action="index.php?'.SID.'"><div align="center"><select name="sort">'.select($values,$options,$_POST['sort']).'</select>
 <select name="dir">'.select('0,1','Fallend,Steigend',$_POST['dir']).'</select>
 <input type="submit" name="sortieren" value="sortieren"></center></form>';

@@ -19,8 +19,8 @@
 ######## user abfragen ################
 unset($daten);
 $abfrage="SELECT aka_id.ID, aka_id.Name,aka_id.EMAIL FROM aka_id,aka_tasks_user where aka_tasks_user.id=aka_id.id order by aka_tasks_user.state desc, aka_id.Name asc";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
-while(list($db_id,$db_name,$db_email) = mysql_fetch_row($erg)) {
+$erg=$mysqli->query($abfrage);
+while(list($db_id,$db_name,$db_email) = mysqli_fetch_row($erg)) {
 	unset($temp);
 	$temp=explode(' ',$db_name);
 	$daten[$db_id][0]=$temp[0];
@@ -28,14 +28,14 @@ while(list($db_id,$db_name,$db_email) = mysql_fetch_row($erg)) {
 	$daten[$db_id][11]=$temp[1];
 	$daten[$db_id][12]=$db_email;
 	unset($db_id,$db_name,$db_email);
-	$a++;
+	//$a++;
 	};
 ######## user abfragen ################
 ######## weitere daten abfragen ################
 $abfrage="SELECT `ID`, `STATE`,`NUM_SUCCESS`, `NUM_FAILED`, `ACTIVE_TASK`, `SUCCESS`, `FAIL` FROM `aka_tasks_user`";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
+$erg=$mysqli->query($abfrage);
 $a=0;
-while(list($db_id,$db_state,$db_num_success,$db_num_failed,$db_active_task,$db_success,$db_fail) = mysql_fetch_row($erg)) {
+while(list($db_id,$db_state,$db_num_success,$db_num_failed,$db_active_task,$db_success,$db_fail) = mysqli_fetch_row($erg)) {
 	if(!empty($daten[$db_id][0])){
 		$daten[$db_id][1]=$db_num_success;
 		$daten[$db_id][2]=$db_num_failed;

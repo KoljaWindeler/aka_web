@@ -1,13 +1,14 @@
 <?php
-$options=array();
-$options[0]='Grube rechts';
-$options[1]='Grube links';
-$options[2]='Mehrzweckarbeitsplatz';
-$options[3]='linke B&uuml;hne';
-$options[4]='rechte B&uuml;hne';
-$options[5]='Empore 1';
-$options[6]='Empore 2';
-$options[7]='Empore 3';
+$options=array(
+'Grube rechts',
+'Grube links',
+'Mehrzweckarbeitsplatz',
+'linke B&uuml;hne',
+'rechte B&uuml;hne',
+'Empore 1',
+'Empore 2',
+'Empore 3',
+);
 
 $max_time=array();
 $max_time[0]=86400*7*2;
@@ -19,7 +20,7 @@ $max_time[5]=86400*7*4;
 $max_time[6]=86400*7*4;
 $max_time[7]=86400*7*4;
 
-
+$recover=0;
 $sql_done=0;
 ####### anfrage verarbeiten####
 if(!empty($_POST['save'])){
@@ -38,8 +39,8 @@ if(!empty($_POST['save'])){
 		$reason=1;
 	} else {
 		$query="select grund from aka_reserve where ort=\"".$options[$_POST['wo']]."\" and ((bis>".$_POST['j_from_time-ts']." and von<".$_POST['j_to_time-ts'].") OR (von<".$_POST['j_to_time-ts']." AND bis>".$_POST['j_to_time-ts'].")) AND active=1";
-		$sql=mysql_query($query);
-		$count=mysql_num_rows($sql);
+		$sql=$mysqli->query($query);
+		$count=mysqli_num_rows($sql);
 		if($count>0){
 			$stop=1;
 			$recover=1;
@@ -50,7 +51,7 @@ if(!empty($_POST['save'])){
 	if(!$stop){
 		$sql="INSERT INTO `aka_reserve` (`id` ,`von`, `bis`, `ort`, `person`, `grund`, `time_create`, `ip_create`, `time_delete`, `ip_delete`, `active`) VALUES
 				('', ".$_POST['j_from_time-ts'].", ".$_POST['j_to_time-ts'].", '".$options[$_POST['wo']]."', '".$_POST['name']."', '".$_POST['warum']."', ".time().", '".$_SERVER['REMOTE_ADDR']."', '','','1')";
-		if(!mysql_query( $sql )){
+		if(!$mysqli->query( $sql )){
 			echo 'ohoh';
 			echo '<hr>'.$sql.'<hr>';
 			$recover=1;			
@@ -61,7 +62,7 @@ if(!empty($_POST['save'])){
 	};
 } elseif(!empty($_GET['delete'])){
 	$sql="UPDATE `aka_reserve` SET `active` = '0',`ip_delete`='".$_SERVER['REMOTE_ADDR']."',`time_delete`=".time()." WHERE `aka_reserve`.`id` =".$_GET['delete']." LIMIT 1 ;";
-	if(!mysql_query( $sql )){
+	if($mysqli->query( $sql )){
 		echo 'ohoh';
 		echo '<hr>'.$sql.'<hr>';
 	} else {
@@ -137,8 +138,8 @@ if($_SESSION['session_user_typ']!=$aka_reserve_watcher_state){
 ### daten
 unset($daten); $a=0;
 $abfrage="SELECT id, von, bis, ort,person,grund,time_create FROM aka_reserve where active=1 and bis>=".time()." order by ort asc,von asc";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
-while(list($db_id,$db_von,$db_bis, $db_ort,$db_person,$db_grund,$db_time_create) = mysql_fetch_row($erg)) {
+$erg=$mysqli->query($abfrage);
+while(list($db_id,$db_von,$db_bis, $db_ort,$db_person,$db_grund,$db_time_create) = $erg->fetch_row()) {
 	$daten[$a]['id']=$db_id;
 	$daten[$a]['von']=$db_von;
 	$daten[$a]['bis']=$db_bis;

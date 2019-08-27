@@ -1,6 +1,9 @@
 <?php
 ########### vorbereitungen ###############
-session_start();
+if(!isset($_SESSION))
+{
+	$SID=session_start();
+}
 if(!isset($SID)) { $SID = session_id(); };
 include('../a_common_scripts/config.php');
 include('../a_common_scripts/fkt_jkw.php');
@@ -20,7 +23,7 @@ if($_SESSION['session_user_typ']==$aka_drinks_admin_state || $_SESSION['session_
 			<a href="index.php?mod=liste&'.SID.'" class="head">Liste drucken</a> &nbsp; | &nbsp; ';
 	};
 echo'	<a href="index.php?'.SID.'&mod=rules" class="head">Regeln</a> &nbsp; | &nbsp;
-	<a href="index.php?logout=1&'.SID.'" class="head">Logout</a> &nbsp; v 4.1b</div><br>';
+	<a href="index.php?logout=1&'.SID.'" class="head">Logout</a> &nbsp; v 4.2b</div><br>';
 #tab_end();
 echo	'</td><td width="5%">&nbsp;</td></tr><tr><td>&nbsp;</td><td>';
 ########### menü ###############

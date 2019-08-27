@@ -1,16 +1,16 @@
 <?php
 include_once("db.php");
-#############################DB Abrufn################
+############################# Connect to DB ################
 $text = 'Konnte die Verbindung zur Datenbank nicht herstellen. <br><i> Bitte versuchen sie es in wenigen Minuten erneut!</i>';
-MYSQL_CONNECT($host,$db_user,$db_pw) or die ($text);
-MYSQL_SELECT_DB($db) or die ($text);
-$verbindung = @mysql_connect($host,$db_user,$db_pw);
-#############################DB Abrufn################
+$mysqli = new mysqli($host,$db_user,$db_pw) or die ($text);
+$mysqli->select_db($db) or die ($text);
+$connection = @mysqli_connect($host,$db_user,$db_pw);
+############################# Connect to DB ################
 $bg='#ededed';
 
-$abfrage="SELECT * FROM `aka_passwords`";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
-while(list($db_id,$db_bedeutung,$db_wert) = mysql_fetch_row($erg)) {
+$query="SELECT * FROM aka_passwords";
+$result=$mysqli->query($query);
+while(list($db_id,$db_bedeutung,$db_wert) = $result->fetch_row()) {
 	if($db_bedeutung=="aka_passwort")
 		$aka_pw=$db_wert;
 	if($db_bedeutung=="aka_super_admin_pw")

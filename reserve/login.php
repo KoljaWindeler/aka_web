@@ -1,18 +1,23 @@
 <?php
-session_start($SID);
+if(!isset($_SESSION))
+{
+	$SID=session_start();
+}
 
-############## tiddyup ###
+############## tidy up ###
 $time=time()-10*60*60; # 10 Std
-mysql_query("DELETE FROM `sec`  WHERE `date`<".$time.";");
-############## tiddyup ###
+$mysqli->query("DELETE FROM `sec`  WHERE `date`<".$time.";");
+############## tidy up ###
 
 ############# logout ####
-if($_GET['logout']==1) { 
-	mysql_query("DELETE FROM `sec` WHERE `key`=".$_SESSION['session_key'].";");
-	unset($_SESSION['session_key']);
-	session_unset();
-	$msg='Erfolgreich ausgeloggt.';
+if(isset($_GET['logout'])) {
+	if ($_GET['logout'] == 1) {
+		$mysqli->query("DELETE FROM `sec` WHERE `key`=" . $_SESSION['session_key'] . ";");
+		unset($_SESSION['session_key']);
+		session_unset();
+		$msg = 'Erfolgreich ausgeloggt.';
 	};
+}
 ############# logout ####
 
 if(!empty($_POST['pw']))
@@ -34,7 +39,7 @@ if(!empty($_POST['pw']))
 	if($_POST['pw']==$aka_pw OR $_POST['pw']==$aka_reserve_pw OR $_POST['pw']==$aka_super_admin_pw OR $_POST['pw']==$aka_reserve_watcher_pw) {
 //		//session_register('session_key');
 		$_SESSION['session_key']=rand(0,99999);
-		mysql_query("INSERT INTO `sec` ( `id` ,  `date` , `ip` , `key` ) VALUES ( NULL , '".time()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['session_key']."');");
+		$mysqli->query("INSERT INTO `sec` ( `id` ,  `date` , `ip` , `key` ) VALUES ( NULL , '".time()."', '".$_SERVER['REMOTE_ADDR']."', '".$_SESSION['session_key']."');");
 		}
 	else{
 		$msg='Passwort falsch';
@@ -44,6 +49,7 @@ if(!empty($_POST['pw']))
 ################################################# GUI #################################################
 if(empty($_SESSION['session_key']))
 	{
+	$msg="";
 	require_once('design/box.php');
 	htmlhead('AkAKraft Drinks Login','','');
 	echo	'<table style="height: 100%; width: 100%" border="0" ><tr><td valign="middle" align="center"><img src="img/Logo.gif"><br /><br /><br /><br />
