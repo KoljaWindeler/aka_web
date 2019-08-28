@@ -48,9 +48,10 @@ if(!empty($_POST['save'])){
 		};
 	};
 	########### eingetragene daten checken #################
+	## removed ID as it auto increments and set time_delete as int
 	if(!$stop){
-		$sql="INSERT INTO `aka_reserve` (`id` ,`von`, `bis`, `ort`, `person`, `grund`, `time_create`, `ip_create`, `time_delete`, `ip_delete`, `active`) VALUES
-				('', ".$_POST['j_from_time-ts'].", ".$_POST['j_to_time-ts'].", '".$options[$_POST['wo']]."', '".$_POST['name']."', '".$_POST['warum']."', ".time().", '".$_SERVER['REMOTE_ADDR']."', '','','1')";
+		$sql="INSERT INTO `aka_reserve` (`von`, `bis`, `ort`, `person`, `grund`, `time_create`, `ip_create`, `time_delete`, `ip_delete`, `active`) VALUES
+				(".$_POST['j_from_time-ts'].", ".$_POST['j_to_time-ts'].", '".$options[$_POST['wo']]."', '".$_POST['name']."', '".$_POST['warum']."', ".time().", '".$_SERVER['REMOTE_ADDR']."', 0,'','1')";
 		if(!$mysqli->query( $sql )){
 			echo 'ohoh';
 			echo '<hr>'.$sql.'<hr>';
@@ -62,7 +63,7 @@ if(!empty($_POST['save'])){
 	};
 } elseif(!empty($_GET['delete'])){
 	$sql="UPDATE `aka_reserve` SET `active` = '0',`ip_delete`='".$_SERVER['REMOTE_ADDR']."',`time_delete`=".time()." WHERE `aka_reserve`.`id` =".$_GET['delete']." LIMIT 1 ;";
-	if($mysqli->query( $sql )){
+	if(!$mysqli->query( $sql )){
 		echo 'ohoh';
 		echo '<hr>'.$sql.'<hr>';
 	} else {
