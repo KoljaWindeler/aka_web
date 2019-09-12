@@ -6,9 +6,9 @@ include_once('../a_common_mailer/class.phpmailer.php');
 ##################### incoming post ############################
 $error=0;
 if(!empty($_POST['save'])) {
-	if(mysql_query( "INSERT INTO `aka_tasks` (`id`, `desc`, `title`, `status`, `date_pre`, `date_post`) VALUES ('','".$_POST['task_desc']."', '".$_POST['task_cap']."', '0', '".time()."', '');")){
-		list($task_id)=mysql_fetch_row(mysql_query("SELECT id from `aka_tasks` order by id desc"));
-		if(mysql_query( "UPDATE `aka_tasks_user` SET `ACTIVE_TASK`='".$task_id."' WHERE `id`='".$_POST['user_id']."';" )){
+	if($mysqli->query( "INSERT INTO `aka_tasks` (`id`, `desc`, `title`, `status`, `date_pre`, `date_post`) VALUES ('','".$_POST['task_desc']."', '".$_POST['task_cap']."', '0', '".time()."', '');")){
+		list($task_id)=mysqli_fetch_row($mysqli->query("SELECT id from `aka_tasks` order by id desc"));
+		if($mysqli->query( "UPDATE `aka_tasks_user` SET `ACTIVE_TASK`='".$task_id."' WHERE `id`='".$_POST['user_id']."';" )){
 			tab_box("100%",100,'left','Info','Aufgabe erfolgreich angelegt');
 
 			$mail    = new PHPMailer();
@@ -27,7 +27,7 @@ Verantwortlicher, oder positiv formuliert "Teamleiter-Leiter" sein wirst.<br><br
 Alle Aufgaben sind einzusehen unter <a href="http://akakraft.de/liste_des_tyrannen/"> akakraft.de/liste_des_tyrannen</a>.<br>
 Mit besten Gr&uuml;&szlig;en, der Arbeitsverteiler Kolja 8)
 </body></html>';
-			$body    = eregi_replace("[\]",'',$body);
+			$body    = preg_replace("[\\\\]",'',$body);
 			$mail->AddReplyTo('Kolja.Windeler@gmail.com');
 			$mail->From 	= 'noreply@akakraft.de';
 			$mail->FromName = "AKA Arbeitsliste";
@@ -51,14 +51,14 @@ Mit besten Gr&uuml;&szlig;en, der Arbeitsverteiler Kolja 8)
 };
 ##################### incoming post ############################
 ##################### interface ###############################
-list($db_min_success) = mysql_fetch_row(mysql_db_query($db,"SELECT `NUM_SUCCESS` FROM `aka_tasks_user` where state=1 order by `NUM_SUCCESS` asc",$verbindung));
-list($db_max_success) = mysql_fetch_row(mysql_db_query($db,"SELECT `NUM_SUCCESS` FROM `aka_tasks_user` where state=1 order by `NUM_SUCCESS` desc",$verbindung));
+list($db_min_success) = mysqli_fetch_row($db->query("SELECT `NUM_SUCCESS` FROM `aka_tasks_user` where state=1 order by `NUM_SUCCESS` asc",$verbindung));
+list($db_max_success) = mysqli_fetch_row($db->query("SELECT `NUM_SUCCESS` FROM `aka_tasks_user` where state=1 order by `NUM_SUCCESS` desc",$verbindung));
 // keine activ task
 $a=0;
 for($i=0;$i<=($db_max_success-$db_min_success);$i++){
 	$abfrage="SELECT aka_id.id FROM aka_tasks_user,aka_id where aka_tasks_user.id=aka_id.id and aka_tasks_user.NUM_SUCCESS=".($db_min_success+$i)." AND aka_tasks_user.active_task='' AND aka_tasks_user.state=1 order by aka_id.name asc";
-	$erg=mysql_db_query($db,$abfrage,$verbindung);
-	while(list($db_id) = mysql_fetch_row($erg)) {
+	$erg=mysqli_db_query($db,$abfrage,$verbindung);
+	while(list($db_id) = mysqli_fetch_row($erg)) {
 		$values[$a]=$db_id;
 		$options[$a]=$daten[$db_id][0].' '.$daten[$db_id][11];
 		$a++;

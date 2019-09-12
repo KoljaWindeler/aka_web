@@ -4,8 +4,8 @@ if($_SESSION['session_user_typ']<>$aka_super_admin_state && $_SESSION['session_u
 tab_go("100%",250,'left','Edit');
 #################### löschen verarbeiten #########################
 if(isset($_GET['remove'])){
-	list($filename)=mysql_fetch_row(mysql_query("SELECT `Filename`FROM `aka_file_list` WHERE `ID`='".$_GET['remove']."' LIMIT 0,1;"));
-	if(mysql_query("DELETE FROM `aka_file_list` WHERE `ID`='".$_GET['remove']."' LIMIT 1;")){
+	list($filename)=mysqli_fetch_row($mysqli->query("SELECT `Filename`FROM `aka_file_list` WHERE `ID`='".$_GET['remove']."' LIMIT 0,1;"));
+	if($mysqli->query("DELETE FROM `aka_file_list` WHERE `ID`='".$_GET['remove']."' LIMIT 1;")){
 		@unlink($filename);
 		echo'	<script type="text/javascript" />
 		<!--
@@ -18,7 +18,7 @@ if(isset($_GET['remove'])){
 		};
 	}
 elseif(isset($_GET['edit'])){
-	list($beschr,$date,$filename)=mysql_fetch_row(mysql_query("SELECT `Bes`,`date`,`filename` FROM `aka_file_list` WHERE `ID`='".$_GET['edit']."' LIMIT 0,1;"));
+	list($beschr,$date,$filename)=mysqli_fetch_row($mysqli->query("SELECT `Bes`,`date`,`filename` FROM `aka_file_list` WHERE `ID`='".$_GET['edit']."' LIMIT 0,1;"));
 #################### upload tabelle #########################
 	$options_tag='';	$options_monat='';		$options_jahr='';
 	for($a=0;$a<=30;$a++) { $b=$a+1; $options_tag[$a]=$b; };
@@ -46,7 +46,7 @@ elseif(isset($_GET['edit'])){
 	}
 elseif(isset($_POST['save'])){
 	$date=mktime(0,0,0,$_POST['monat'],$_POST['tag'],$_POST['jahr']);
-	if(mysql_query("UPDATE `aka_file_list` SET `Bes` = '".$_POST['beschr']."',`date`='".$date."' WHERE `ID` ='".$_POST['ID']."' LIMIT 1 ;")){
+	if($mysqli->query("UPDATE `aka_file_list` SET `Bes` = '".$_POST['beschr']."',`date`='".$date."' WHERE `ID` ='".$_POST['ID']."' LIMIT 1 ;")){
 		echo'	<script type="text/javascript" />
 		<!--
 		location.href="index.php?'.SID.'&from='.$_GET['from'].'&to='.$_GET['to'].'";

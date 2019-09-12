@@ -5,6 +5,7 @@ if(
 	$_SESSION['session_user_typ']==$aka_reserve_watcher_state){
 
 		$_SESSION['session_key']="";
+
 		include('login.php');
 };
 

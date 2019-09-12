@@ -455,7 +455,7 @@ class PHPMailer {
       $to .= $this->AddrFormat($this->to[$i]);
     }
 
-    $toArr = split(',', $to);
+    $toArr = explode(',', $to);
 
     if ($this->Sender != '' && strlen(ini_get('safe_mode'))< 1) {
       $old_from = ini_get('sendmail_from');
@@ -577,7 +577,7 @@ class PHPMailer {
     /* Retry while there is no connection */
     while($index < count($hosts) && $connection == false) {
       $hostinfo = array();
-      if(eregi('^(.+):([0-9]+)$', $hosts[$index], $hostinfo)) {
+      if(preg('^(.+):([0-9]+)$', $hosts[$index], $hostinfo)) {
         $host = $hostinfo[1];
         $port = $hostinfo[2];
       } else {
@@ -1103,11 +1103,11 @@ class PHPMailer {
       return '';
     }
     $magic_quotes = get_magic_quotes_runtime();
-    set_magic_quotes_runtime(0);
+    # set_magic_quotes_runtime(0);
     $file_buffer = fread($fd, filesize($path));
     $file_buffer = $this->EncodeString($file_buffer, $encoding);
     fclose($fd);
-    set_magic_quotes_runtime($magic_quotes);
+    # set_magic_quotes_runtime($magic_quotes);
 
     return $file_buffer;
   }
@@ -1209,7 +1209,8 @@ class PHPMailer {
     $eol = "\r\n";
     $escape = '=';
     $output = '';
-    while( list(, $line) = each($lines) ) {
+    foreach($lines as $line)
+    {
       $linlen = strlen($line);
       $newline = '';
       for($i = 0; $i < $linlen; $i++) {
@@ -1251,7 +1252,7 @@ class PHPMailer {
    */
   function EncodeQ ($str, $position = 'text') {
     /* There should not be any EOL in the string */
-    $encoded = preg_replace("[\r\n]", '', $str);
+    $encoded = preg_replace("/[\r\n]/", '', $str);
 
     switch (strtolower($position)) {
       case 'phrase':
@@ -1545,7 +1546,7 @@ class PHPMailer {
         $filename  = basename($url);
         $directory = dirname($url);
         $cid       = 'cid:' . md5($filename);
-        $fileParts = split("\.", $filename);
+        $fileParts = explode("\.", $filename);
         $ext       = $fileParts[1];
         $mimeType  = $this->_mime_types($ext);
         $message = preg_replace("/".$images[1][$i]."=\"".preg_quote($url, '/')."\"/Ui", $images[1][$i]."=\"".$cid."\"", $message);

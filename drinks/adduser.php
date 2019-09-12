@@ -6,19 +6,19 @@ $error=0;
 $titel='Neuen User anlegen';
 $send='<input type="submit" name="anlegen" value="anlegen">';
 if(!empty($_POST['anlegen'])) {
-	if(mysql_num_rows(mysql_query("SELECT * FROM `aka_id` WHERE name='".$_POST['name']."' LIMIT 0,1"))>0){
+	if(mysqli_num_rows($mysqli->query("SELECT * FROM `aka_id` WHERE name='".$_POST['name']."' LIMIT 0,1"))>0){
 		$error=1; ## hier block ausgeben
 		tab_box("100%",100,'left','Fehler','Achtung: Dieser Name existiert schon in der Datenbank');
 	}
 	else {
-		list($max)=mysql_fetch_row(mysql_query("SELECT `ID` FROM `aka_id` ORDER BY `ID` DESC LIMIT 0,1"));
+		list($max)=mysqli_fetch_row($mysqli->query("SELECT `ID` FROM `aka_id` ORDER BY `ID` DESC LIMIT 0,1"));
 		$max++;
 		$was = array("&auml;", "&ouml;", "&uuml;", "&Auml;", "&Ouml;", "&Uuml;", "&szlig;");
 		$wie = array("ä", "ö", "ü", "Ä", "Ö", "Ü", "ß");
 		$name = str_replace($wie, $was, $_POST['name']); 
 		
-		if(mysql_query( "INSERT INTO `aka_id` (`id` ,`name`,`EMAIL`,`LAST_MAIL`) VALUES ('".$max."', '".$name."', '".$_POST['email']."', '".$_POST['email_pol']."')" ) &&
-		   mysql_query( "INSERT INTO `aka_tasks_user` (`id`, `state`,`NUM_SUCCESS`,`NUM_FAILED`,`ACTIVE_TASK`,`SUCCESS`,`FAIL`) VALUES ('".$max."', '1', '0', '0', '0','', '')" )){
+		if($mysqli->query( "INSERT INTO `aka_id` (`id` ,`name`,`EMAIL`,`LAST_MAIL`) VALUES ('".$max."', '".$name."', '".$_POST['email']."', '".$_POST['email_pol']."')" ) &&
+		   $mysqli->query( "INSERT INTO `aka_tasks_user` (`id`, `state`,`NUM_SUCCESS`,`NUM_FAILED`,`ACTIVE_TASK`,`SUCCESS`,`FAIL`) VALUES ('".$max."', '1', '0', '0', '0','', '')" )){
 			$ok=1;
 			tab_box("100%",100,'left','Info','User erfolgreich angelegt');
 			}
@@ -29,20 +29,20 @@ if(!empty($_POST['anlegen'])) {
 		};
 }
 elseif(!empty($_POST['entfernen'])) {
-	if( 	mysql_query("DELETE FROM `aka_id` WHERE `id`=".$_POST['rm'].";") AND 
-			mysql_query("DELETE FROM `aka_money` WHERE `id`=".$_POST['rm'].";") AND
-			mysql_query("DELETE FROM `aka_tasks_user` WHERE `id`=".$_POST['rm'].";") AND 
-			mysql_query("DELETE FROM `aka_verbrauch` WHERE `id`=".$_POST['rm'].";")) { 
+	if( 	$mysqli->query("DELETE FROM `aka_id` WHERE `id`=".$_POST['rm'].";") AND 
+			$mysqli->query("DELETE FROM `aka_money` WHERE `id`=".$_POST['rm'].";") AND
+			$mysqli->query("DELETE FROM `aka_tasks_user` WHERE `id`=".$_POST['rm'].";") AND 
+			$mysqli->query("DELETE FROM `aka_verbrauch` WHERE `id`=".$_POST['rm'].";")) { 
 		tab_box("100%",100,'left','Info','User erfolgreich gel&ouml;scht'); };
 	}
 elseif(!empty($_POST['bearbeiten'])) {
 	list($vorgabe_id,$name_vorgabe,$email_vorgabe,$email_pol_vorgabe)=
-			mysql_fetch_row(mysql_query("SELECT `id`,`name`,`EMAIL`,`LAST_MAIL` FROM `aka_id` WHERE `ID`='".$_POST['rm']."';"));
+			mysqli_fetch_row($mysqli->query("SELECT `id`,`name`,`EMAIL`,`LAST_MAIL` FROM `aka_id` WHERE `ID`='".$_POST['rm']."';"));
 	$titel='User bearbeiten';
 	$send='<input type="submit" name="speichern" value="speichern">';
 	}
 elseif(!empty($_POST['speichern'])) {
-	if(mysql_query( "UPDATE `aka_id` SET `name`='".$_POST['name']."',`EMAIL`='".$_POST['email']."',`LAST_MAIL`='".$_POST['email_pol']."' WHERE `id`='".$_POST['id']."';" )){
+	if($mysqli->query( "UPDATE `aka_id` SET `name`='".$_POST['name']."',`EMAIL`='".$_POST['email']."',`LAST_MAIL`='".$_POST['email_pol']."' WHERE `id`='".$_POST['id']."';" )){
 			tab_box("100%",100,'left','Info','&Auml;nderungen erfolgreich gespeichert.');
 			};
 	};

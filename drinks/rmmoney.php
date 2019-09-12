@@ -11,7 +11,7 @@ if(isset($_POST['senden'])) {
 		if(!empty($_POST['addbill_'.$a]) AND $_POST['addbill_'.$a] > 0) {
 			if($_POST['send_mail']=='on'){ $changed[$a]=1; } // hier ist a die id des users 
 			else { echo 'Es wurden absichtlich keine Mails verschickt!'; }
-			if(!mysql_query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
+			if(!$mysqli->query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
 				echo 'ohoh';
 				};
 			};
@@ -28,7 +28,7 @@ $daten=array_reverse($daten);
 ##################### daten sammeln ############################
 ##################### anzeige ############################
 tab_go("100%",250,'left','&Uuml;bersichtstabelle');
-echo	'<table width="100%"  class="singletable"><tr><th width="10">#</th><th>Name</th><th>Striche letzter Abrechnung</th><th>Aktuelles Guthaben</th><th>Getr&auml;nkestriche</th></tr><form name="addbill" method="POST" action="index.php?mod=bill&'.SID.'">';
+echo	'<table width="100%"  class="singletable"><tr><th width="10">#</th><th>Name</th><th>Striche letzter Abrechnung</th><th>Getr&auml;nkestriche</th><th>Kontostand</th></tr><form name="addbill" method="POST" action="index.php?mod=bill&'.SID.'">';
 $summe_geld=0;
 $remember_user=array();
 $summe_getraenke=0;

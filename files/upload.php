@@ -2,28 +2,31 @@
 if(empty($_SESSION['session_user_typ'])) { exit('falsches passwort'); };
 ##################### Tabelle #############################################
 tab_go("100%",250,'left','Upload');
+print_r($_POST);
 $beschr_post='';
 #################### upload verarbeiten #########################
 if(!empty($_POST['upload'])) {
-	$uploadDir = '/var/www/aka_web/files/files/';
+	#$uploadDir = './files/';
+	$uploadDir =  //var/www/aka_web/files/files/;
 	$uploadFile = $uploadDir.$_FILES['userfile']['name'];
 	$uploadFile = strtolower($uploadFile);
 	$extension = pathinfo($uploadFile);
-	$date=mktime(0,0,0,$_POST['monat'],$_POST['tag'],$_POST['jahr']);
+	$date=mktime(0,0,0,$_POST['monat'],intval($_POST['tag']),$_POST['jahr']);
 	//if($_FILES['userfile']['type'] == 'application/pdf'){
 	if($extension['extension']=="pdf"){
 	//if(pathinfo($filename, PATHINFO_EXTENSION); $_FILES['userfile']['type'] == 'application/pdf'){
 	//if (1==1) { // filetyp klappt zuoft nicht
 		$extension = ".".$extension['extension'];
-		$uploadFile = str_replace($extension,'_'.time().$extension,strtolower($uploadFile));
+		$uploadFile = str_replace($extension,'_'.$date.$extension,strtolower($uploadFile));
 		
 		echo "<pre>";
 		#echo 'von:'.$_FILES['userfile']['tmp_name'].' nach '.$uploadFile.' <br><br>';
+		print_r($_FILES);
 		if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadFile)){ 
-			list($id)=mysql_fetch_row(mysql_query("SELECT `ID` FROM `aka_file_list` ORDER BY `ID` DESC LIMIT 0,1"));
+			list($id)=mysqli_fetch_row($mysqli->query("SELECT `ID` FROM `aka_file_list` ORDER BY `ID` DESC LIMIT 0,1"));
 			$id++;
 			$uploadFile='files/'.basename($uploadFile);
-			if(mysql_query("INSERT INTO `aka_file_list` (`ID` ,`date` ,`Filename` ,`Bes`) VALUES ('".$id."', '".$date."', '".$uploadFile."', '".$_POST['beschr']."') ")){
+			if($mysqli->query("INSERT INTO `aka_file_list` (`ID` ,`date` ,`Filename` ,`Bes`) VALUES ('".$id."', '".$date."', '".$uploadFile."', '".$_POST['beschr']."') ")){
 				echo '<font color="green"><b>Datei ist in Ordnung und Sie wurde erfolgreich hochgeladen.</b></font>';
 				#echo "Hier sind die Fehler informationen:\n";
 				#print_r($_FILES);
@@ -64,19 +67,18 @@ if(!empty($_POST['upload'])) {
 	};
 #################### upload verarbeiten #########################
 #################### upload tabelle #########################
-$options_tag='';	$options_monat='';		$options_jahr='';
+$options_tag=[];	$options_monat=[];		$options_jahr=[];
 for($a=0;$a<=30;$a++) { $b=$a+1; $options_tag[$a]=$b; };
 for($a=0;$a<=11;$a++) { $b=$a+1; $options_monat[$a]=$b; };
 for($a=date('Y',time())-5;$a<=date('Y',time())+5;$a++) { $b=$a-(date('Y',time())-5); $options_jahr[$b]=$a; };
 $values_tag=$options_tag;
 $values_monat=$options_monat;
 $values_jahr=$options_jahr;
-
 echo	'<input type="hidden" name="MAX_FILE_SIZE" value="100000">
 			<table width="100%" class="singletable">
 				<tr><th width="250"><font color="#ffffff" ><b>Datei ausw&auml;hlen:</b></th>
 						<td><form enctype="multipart/form-data" action="index.php?mod=upload&'.SID.'" method="post">
-								<input name="userfile" type="file" size="60"></td></tr>
+								<input name="userfile" accept=".pdf" type="file" size="60"></td></tr>
 				<tr><th><font color="#ffffff"><b>Beschreibung eingeben:<b><br><i>"//" trennt die Punkte</i></th>
 						<td><textarea name="beschr" cols="60" >'.$beschr_post.'</textarea></td></tr>
 				<tr><th><font color="#ffffff"><b>Datum manipulieren:<b></th>

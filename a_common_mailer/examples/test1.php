@@ -6,7 +6,7 @@ $mail    = new PHPMailer();
 
 $body    = $mail->getFile('contents.html');
 
-$body    = eregi_replace("[\]",'',$body);
+$body    = preg_replace("[\\\\]",'',$body);
 
 $mail->From     = "www-data@ikt.uni-hannover.de";
 $mail->FromName = "IKT Hannover";

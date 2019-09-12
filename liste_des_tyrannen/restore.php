@@ -79,7 +79,7 @@ for($i=0;$i<=75;$i++) {
 	$temp=str_replace("(",'',$temp);
 	$daten[$i]=explode(',',$temp);
 	$request="UPDATE `aka_id` set `name`='".$daten[$i][1]."' WHERE `id`='".$daten[$i][0]."';";
-	if(mysql_query($request)) {
+	if($mysqli->query($request)) {
 	echo 'Datum nr:'.$daten[$i][0].' und der name ist '.$daten[$i][1].'<br>'; }
 	else { echo 'error!! -> '.$request.'<br>';};
 	

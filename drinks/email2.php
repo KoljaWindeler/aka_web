@@ -10,8 +10,8 @@ for ($a=0;$a<=$max_user;$a++) {
 	unset($add_text);
 	$current_user=$daten[$a];
 	
-	if($changed[$current_user[0]]==1 && !empty($current_user[12])) { // änderung vorhanden und eine mail adresse da
-		$temp_user=$a; // für die pranger info an den admin;
+	if($changed[$current_user[0]]==1 && !empty($current_user[12])) { // ï¿½nderung vorhanden und eine mail adresse da
+		$temp_user=$a; // fï¿½r die pranger info an den admin;
 
 		// create firstname from data
 		$temp=explode(" ",$current_user[1]);
@@ -28,13 +28,13 @@ for ($a=0;$a<=$max_user;$a++) {
 		};
 
 		// wir haben x modes:
-		// 1. striche wurden in das abrechnungssystem übertragen, der nutzer hat aber noch >10€ geld: identifikation des eintrags durch: 								datum letzer abbuchung > datum letzer aufbuchung && guthaben
-		// 2. striche wurden in das abrechnungssystem übertragen, der nutzer hat aber noch  >-5  && <10€ geld: identifikation des eintrags durch: 				datum letzer abbuchung > datum letzer aufbuchung && guthaben
-		// 3. striche wurden in das abrechnungssystem übertragen, der nutzer hat  <-5€ geld: identifikation des eintrags durch: 													datum letzer abbuchung > datum letzer aufbuchung && guthaben
-		// 4. dem nutzern wurden -5 euro übertragen -> mahngebühr																																											datum letzer aufbuchung > datum letzer abbuchung && betrag 
-		// 5. der nutzer hat geld überwiesen, -> gutschrift -> der nutzer hat nun >10€																																			datum letzer aufbuchung > datum letzer abbuchung && betrag && guthaben
-		// 6. der nutzer hat geld überwiesen, -> gutschrift -> der nutzer hat noch immer <-5€																															datum letzer aufbuchung > datum letzer abbuchung && betrag && guthaben
-		// 7. der nutzer hat geld überwiesen, -> gutschrift -> der nutzer hat nun >-5€ <10€																																	datum letzer aufbuchung > datum letzer abbuchung && betrag && guthaben
+		// 1. striche wurden in das abrechnungssystem ï¿½bertragen, der nutzer hat aber noch >10ï¿½ geld: identifikation des eintrags durch: 								datum letzer abbuchung > datum letzer aufbuchung && guthaben
+		// 2. striche wurden in das abrechnungssystem ï¿½bertragen, der nutzer hat aber noch  >-5  && <10ï¿½ geld: identifikation des eintrags durch: 				datum letzer abbuchung > datum letzer aufbuchung && guthaben
+		// 3. striche wurden in das abrechnungssystem ï¿½bertragen, der nutzer hat  <-5ï¿½ geld: identifikation des eintrags durch: 													datum letzer abbuchung > datum letzer aufbuchung && guthaben
+		// 4. dem nutzern wurden -5 euro ï¿½bertragen -> mahngebï¿½hr																																											datum letzer aufbuchung > datum letzer abbuchung && betrag 
+		// 5. der nutzer hat geld ï¿½berwiesen, -> gutschrift -> der nutzer hat nun >10ï¿½																																			datum letzer aufbuchung > datum letzer abbuchung && betrag && guthaben
+		// 6. der nutzer hat geld ï¿½berwiesen, -> gutschrift -> der nutzer hat noch immer <-5ï¿½																															datum letzer aufbuchung > datum letzer abbuchung && betrag && guthaben
+		// 7. der nutzer hat geld ï¿½berwiesen, -> gutschrift -> der nutzer hat nun >-5ï¿½ <10ï¿½																																	datum letzer aufbuchung > datum letzer abbuchung && betrag && guthaben
 
 		$mode=0;
 		if($current_user[4]>$current_user[7]){ // hier wurde gerade etwas aufgebucht
@@ -42,7 +42,7 @@ for ($a=0;$a<=$max_user;$a++) {
 				$mode=4;	// mahnung
 			}  else { // aufbuchung
 				if($current_user[8]>10){
-					$mode=5; // gutschrift auf >10€
+					$mode=5; // gutschrift auf >10ï¿½
 				} else if($current_user[8]<-5){
 					$mode=6; // gutschrift ohne sinn
 				} else {
@@ -129,7 +129,7 @@ for ($a=0;$a<=$max_user;$a++) {
 
 		$mail    = new PHPMailer();
 		$body    = $common_header.$text.$common_footer;
-		$body    = eregi_replace("[\]",'',$body);
+		$body    = preg_replace("[\\\\]",'',$body);
 		$mail->AddReplyTo('Kolja.Windeler@gmail.com');
 		$mail->From 	= 'noreply@akakraft.de';
 		$mail->FromName = "AKA Getr".chr(228)."nkemailer";
@@ -150,8 +150,8 @@ for ($a=0;$a<=$max_user;$a++) {
 	};
 };
 ############## prangerliste mailen #######################	
-if(time()-$daten[$temp_user][7]<60){ # eigentlich doof aber total praktisch für den email button
-	mysql_query( "DELETE FROM `aka_mahnomat`" ); # alles löschen
+if(time()-$daten[$temp_user][7]<60){ # eigentlich doof aber total praktisch fï¿½r den email button
+	$mysqli->query( "DELETE FROM `aka_mahnomat`" ); # alles lï¿½schen
 	$mail    = new PHPMailer();
 	$body    = '<html><body><center>Hey Kolja, <br>die Aka Prangerliste: <br><br>';
 	$sql_user=array();
@@ -163,10 +163,10 @@ if(time()-$daten[$temp_user][7]<60){ # eigentlich doof aber total praktisch für 
 		};
 	};
 	$sql="INSERT INTO `aka_mahnomat` (`id` ,`user`, `time`) VALUES ('', '".implode(',',$sql_user)."', ".(time()+10*86400).")";
-	mysql_query($sql);
+	$mysqli->query($sql);
 	
 	$body.='	<br><br>(bis zum '.date('d.M.Y',time()+10*86400).') </center></body></html>';
-	$body    = eregi_replace("[\]",'',$body);
+	$body    = preg_replace("[\\\\]",'',$body);
 	$mail->AddReplyTo('Kolja.Windeler@gmail.com');
 	$mail->From 	= 'noreply@akakraft.de';
 	$mail->FromName = "AKA Getr".chr(228)."nkemailer";

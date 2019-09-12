@@ -12,9 +12,9 @@ $db=$_GET['db'];
 ////////////////////////////VARS UND BILD ///////////////////////
 ////////////////////////////db in array///////////////////////
 $jahr_anfang=mktime(0,0,1,0,0,date("Y",$time));
-$array = mysql_query("SELECT `value`,`date` FROM `".$db."` WHERE `id`=".$db_id." AND `date`>".$jahr_anfang.";"); 
+$array = $mysqli->query("SELECT `value`,`date` FROM `".$db."` WHERE `id`=".$db_id." AND `date`>".$jahr_anfang.";"); 
 $a=0;
-while(list($l_value,$l_time) = mysql_fetch_row($array))
+while(list($l_value,$l_time) = mysqli_fetch_row($array))
 	{
 	if($l_value[0]<>"-") {			 // will das neg startguthaben nicht drin haben
 		$data[$a][0]=$l_time;

@@ -4,8 +4,10 @@ if(!isset($_SESSION))
 {
     $SID=session_start();
 }
+print_r($_GET);
 ## TODO find out the correct way instead of just setting ""
-$_GET['mod']="";
+if(!isset( $_GET['mod'])) {
+$_GET['mod']="";}
 require_once('../a_common_scripts/config.php');
 require_once('../a_common_scripts/sec.php');
 require_once('../a_common_scripts/fkt_jkw.php');
@@ -42,10 +44,19 @@ echo'
 echo	'</td><td width="5%">&nbsp;</td></tr><tr><td>&nbsp;</td><td>';
 ########### menü ###############
 ########### reinladen ###############
-if($_GET['mod']=='upload')		 	{	include('upload.php'); 			}
-elseif($_GET['mod']=='edit') 		{	include('edit.php');				}
-elseif($_GET['mod']=='counter')	{ include('countershow.php');	}
-else 												{	include('tab.php'); 				};
+
+if(isset( $_GET['mod'])) {
+    print_r($_GET['mod']=='upload');
+    if ($_GET['mod'] == 'upload') {
+        include('upload.php');
+    } elseif ($_GET['mod'] == 'edit') {
+        include('edit.php');
+    } elseif ($_GET['mod'] == 'counter') {
+        include('countershow.php');
+    } else {
+        include('tab.php');
+    };
+}
 ########### reinladen ###############
 echo '</td><td>&nbsp;</td></tr></table><center>';
 include("counter.php");
