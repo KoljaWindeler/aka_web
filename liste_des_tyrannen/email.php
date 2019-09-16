@@ -61,7 +61,7 @@ Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben.
 <b>Bankleitzahl: </b> 29165681<br>
 <b>Betreff: </b> Falls ihr nicht von eurem Konto &uuml;berweist, bitte euren Namen angeben. <br>
 </body></html>';
-		$body    = eregi_replace("[\]",'',$body);
+		$body    = preg_replace("[\\\\]",'',$body);
 		$mail->AddReplyTo('Kolja.Windeler@gmail.com');
 		$mail->From 	= 'noreply@akakraft.de';
 		$mail->FromName = "AKA Getr".chr(228)."nkemailer";
@@ -77,7 +77,7 @@ Bitte sei bem&uuml;ht, stets ein Polster ( ~ 10 eur ) auf deinem Konto zu haben.
 	
 ############## prangerliste mailen #######################	
 if(time()-$daten[$temp_user][7]<60){ # eigentlich doof aber total praktisch für den email button
-	mysql_query( "DELETE FROM `aka_mahnomat`" ); # alles löschen
+	$mysqli->query( "DELETE FROM `aka_mahnomat`" ); # alles löschen
 	$mail    = new PHPMailer();
 	$body    = '<html><body><center>Hey Kolja, <br>die Aka Prangerliste: <br><br>';
 	$sql_user=array();
@@ -89,10 +89,10 @@ if(time()-$daten[$temp_user][7]<60){ # eigentlich doof aber total praktisch für
 		};
 	};
 	$sql="INSERT INTO `aka_mahnomat` (`id` ,`user`, `time`) VALUES ('', '".implode(',',$sql_user)."', ".(time()+10*86400).")";
-	mysql_query($sql);
+	$mysqli->query($sql);
 	
 	$body.='	<br><br>(bis zum '.date('d.M.Y',time()+10*86400).') </center></body></html>';
-	$body    = eregi_replace("[\]",'',$body);
+	$body    = preg_replace("[\\\\]",'',$body);
 	$mail->AddReplyTo('Kolja.Windeler@gmail.com');
 	$mail->From 	= 'noreply@akakraft.de';
 	$mail->FromName = "AKA Getr".chr(228)."nkemailer";

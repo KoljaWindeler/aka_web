@@ -3,7 +3,7 @@ if($_SESSION['session_user_typ']<>$aka_tyran_admin_state && $_SESSION['session_u
 ##################### security ################################
 ##################### daten annehmen ###########################
 if(isset($_POST['senden'])) {
-	if(!mysql_query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
+	if(!$mysqli->query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
 		echo 'ohoh';
 		};
 	};

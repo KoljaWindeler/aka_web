@@ -5,6 +5,7 @@ if(!isset($_SESSION))
 	$SID=session_start();
 }
 ## TODO find out the correct way instead of just setting ""
+if(!isset($_GET['mod']))
 $_GET['mod']="";
 require_once('../a_common_scripts/config.php');
 require_once('../a_common_scripts/sec.php');

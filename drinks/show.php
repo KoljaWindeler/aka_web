@@ -5,12 +5,12 @@ $del = intval($_GET['del']);
 ############ löschen ####################
 if($_SESSION['session_user_typ']==$aka_drinks_admin_state || $_SESSION['session_user_typ']==$aka_super_admin_state){ // admin check
 	if(!empty($del) && !empty($id)){
-		$verbrauch=mysql_num_rows(mysql_query("SELECT * FROM `aka_verbrauch` WHERE `id`='".$id."' AND `date`='".$del."';"));
-		$money=mysql_num_rows(mysql_query("SELECT * FROM `aka_money` WHERE `id`='".$id."' AND `date`='".$del."';"));
+		$verbrauch=mysqli_num_rows($mysqli->query("SELECT * FROM `aka_verbrauch` WHERE `id`='".$id."' AND `date`='".$del."';"));
+		$money=mysqli_num_rows($mysqli->query("SELECT * FROM `aka_money` WHERE `id`='".$id."' AND `date`='".$del."';"));
 		if(($money+$verbrauch)==1){
 			if($money==1){ $db_select='aka_money'; }
 			else { $db_select='aka_verbrauch'; };
-			if(mysql_query("DELETE FROM `".$db_select."` WHERE `id`='".$id."' AND `date`='".$del."' LIMIT 1;")){
+			if($mysqli->query("DELETE FROM `".$db_select."` WHERE `id`='".$id."' AND `date`='".$del."' LIMIT 1;")){
 				echo '<font color="green"><b>Posten gel&ouml;scht!</b></font><br>'; 
 				}
 			else {
@@ -28,8 +28,8 @@ $eintrag='';
 $k=0;
 
 $abfrage="SELECT `value`,`date` FROM `aka_money` WHERE `ID`=".$id."";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
-while(list($db_value,$db_date) = mysql_fetch_row($erg)) {
+$erg=mysqli_db_query($db,$abfrage,$verbindung);
+while(list($db_value,$db_date) = mysqli_fetch_row($erg)) {
 	$eintrag[$k][0]=$db_date;
 	$eintrag[$k][1]=$db_value; 
 	$eintrag[$k][2]='-';
@@ -40,8 +40,8 @@ while(list($db_value,$db_date) = mysql_fetch_row($erg)) {
 
 $l=0;
 $abfrage="SELECT `value`,`date` FROM `aka_verbrauch` WHERE `ID`=".$id."";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
-while(list($db_value,$db_date) = mysql_fetch_row($erg)) {
+$erg=mysqli_db_query($db,$abfrage,$verbindung);
+while(list($db_value,$db_date) = mysqli_fetch_row($erg)) {
 	$eintrag[$k][0]=$db_date;
 	$eintrag[$k][1]='-';
 	$eintrag[$k][2]=$db_value; 

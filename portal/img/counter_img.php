@@ -10,9 +10,9 @@ include('../scripts/config.php');
 $db_counter="aka_counter";
 ////////////////////////////VARS UND BILD ///////////////////////
 ////////////////////////////db in array///////////////////////
-$array = mysql_query("SELECT time,typ FROM `".$db_counter."` WHERE typ<>'9'"); 
+$array = $mysqli->query("SELECT time,typ FROM `".$db_counter."` WHERE typ<>'9'"); 
 $a=0;
-while(list($l_time,$l_typ) = mysql_fetch_row($array))
+while(list($l_time,$l_typ) = mysqli_fetch_row($array))
 	{
 	$data[$a][0]=$l_time;
 	$data[$a][1]=$l_typ;

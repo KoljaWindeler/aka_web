@@ -9,16 +9,16 @@ if(!empty($_POST)){
             
             // such dir die liste, und die anzahl für die success raus
             list($db_task_user_success,$db_task_user_num_success)=
-            mysql_fetch_row(mysql_db_query($db,"SELECT `SUCCESS`,`NUM_SUCCESS` FROM `aka_tasks_user` WHERE `id`=".$task_id[1].";",$verbindung));
+            mysqli_fetch_row(mysqli_db_query($db,"SELECT `SUCCESS`,`NUM_SUCCESS` FROM `aka_tasks_user` WHERE `id`=".$task_id[1].";",$verbindung));
             if(!empty($db_task_user_success)) { $db_task_user_success.=','; };
             $db_task_user_success.=$task_id[0];
             if(!empty($db_task_user_num_success)) { $db_task_user_num_success++; } else { $db_task_user_num_success=1; };
             
-            if(mysql_query( "UPDATE `aka_tasks_user` SET `ACTIVE_TASK`='0' WHERE `id`='".$task_id[1]."';" ) &&
-               mysql_query( "UPDATE `aka_tasks_user` SET `SUCCESS`='".$db_task_user_success."' WHERE `id`='".$task_id[1]."';" ) &&
-               mysql_query( "UPDATE `aka_tasks_user` SET `NUM_SUCCESS`='".$db_task_user_num_success."' WHERE `id`='".$task_id[1]."';" ) &&
-               mysql_query( "UPDATE `aka_tasks` SET `status`='1' WHERE `id`='".$task_id[0]."';" ) &&
-               mysql_query( "UPDATE `aka_tasks` SET `date_post`='".time()."' WHERE `id`='".$task_id[0]."';" )){
+            if($mysqli->query( "UPDATE `aka_tasks_user` SET `ACTIVE_TASK`='0' WHERE `id`='".$task_id[1]."';" ) &&
+               $mysqli->query( "UPDATE `aka_tasks_user` SET `SUCCESS`='".$db_task_user_success."' WHERE `id`='".$task_id[1]."';" ) &&
+               $mysqli->query( "UPDATE `aka_tasks_user` SET `NUM_SUCCESS`='".$db_task_user_num_success."' WHERE `id`='".$task_id[1]."';" ) &&
+               $mysqli->query( "UPDATE `aka_tasks` SET `status`='1' WHERE `id`='".$task_id[0]."';" ) &&
+               $mysqli->query( "UPDATE `aka_tasks` SET `date_post`='".time()."' WHERE `id`='".$task_id[0]."';" )){
                 tab_box("100%",100,'left','Info','Aufgabe erfolgreich abgeschlossen');
             }
                
@@ -33,8 +33,8 @@ echo '<table width="500" border="1" class="singletable">
 
 // get all task infos, id der aufgabe, beschreibung, titel und die user id, user name
 $abfrage="SELECT aka_tasks.id, aka_tasks.desc, aka_tasks.title, aka_tasks_user.id, aka_id.name FROM aka_tasks,aka_tasks_user,aka_id WHERE aka_id.id=aka_tasks_user.id AND aka_tasks.id=aka_tasks_user.ACTIVE_TASK AND aka_tasks_user.ACTIVE_TASK!='0' order by aka_tasks.id asc;";
-$erg=mysql_db_query($db,$abfrage,$verbindung);
-while(list($db_id,$db_desc,$db_title,$db_user_id, $db_user_name) = mysql_fetch_row($erg)) {
+$erg=mysqli_db_query($db,$abfrage,$verbindung);
+while(list($db_id,$db_desc,$db_title,$db_user_id, $db_user_name) = mysqli_fetch_row($erg)) {
 
     echo '<tr><td>'.$db_id.'</td><td>'.$db_user_name.'</td><td>'.$db_title.'</td><td><input type="checkbox" name="'.$db_id.','.$db_user_id.'"></td></tr>';
 };

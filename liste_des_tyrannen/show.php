@@ -6,17 +6,17 @@ for($a=0;$a<count($id_arr);$a++){
 	$id=$id_arr[$a];
 		
 	$abfrage="SELECT `desc`,`title`,`status`,`date_pre`,`date_post` FROM `aka_tasks` WHERE `ID`=".$id."";
-	$erg=mysql_query($abfrage);
-	list($db_desc,$db_title,$db_status,$db_pre,$db_post) = mysql_fetch_row($erg);
+	$erg=$mysqli->query($abfrage);
+	list($db_desc,$db_title,$db_status,$db_pre,$db_post) = mysqli_fetch_row($erg);
 	
 	// select the user id for a task
 	$task_user='';
 	$abfrage="SELECT `id` FROM `aka_tasks_user` WHERE `ACTIVE_TASK`=".$id.";";
-	$erg=mysql_query($abfrage);
-	while(list($db_task_user_id) = mysql_fetch_row($erg)) {
+	$erg=$mysqli->query($abfrage);
+	while(list($db_task_user_id) = mysqli_fetch_row($erg)) {
 		// get user name 
 		if(!empty($db_task_user_id)){
-		list($db_task_user)=mysql_fetch_row(mysql_query("SELECT `name` FROM `aka_id` WHERE `id`=".$db_task_user_id.";"));
+		list($db_task_user)=mysqli_fetch_row($mysqli->query("SELECT `name` FROM `aka_id` WHERE `id`=".$db_task_user_id.";"));
 		$task_user.=$db_task_user.', ';
 		};
 	};

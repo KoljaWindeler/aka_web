@@ -4,6 +4,7 @@ $gestern = $heute - 86400;
 $jetzt = time();
 $db_counter="aka_counter";
 
+$_SESSION['counter']  = 0;
 
 if(! $_SESSION['counter'])
 	{

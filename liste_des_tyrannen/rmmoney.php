@@ -3,7 +3,7 @@ if($_SESSION['session_user_typ']<>2) { exit('falsches passwort'); };
 ##################### security ################################
 ##################### daten annehmen ###########################
 $time=time();
-list($max)=mysql_fetch_row(mysql_query("SELECT `id` FROM `aka_id` ORDER BY `id` DESC LIMIT 0,1"));
+list($max)=mysqli_fetch_row($mysqli->query("SELECT `id` FROM `aka_id` ORDER BY `id` DESC LIMIT 0,1"));
 for($a=0;$a<=$max;$a++){	$changed[$a]=0; }
 
 if(isset($_POST['senden'])) {
@@ -11,7 +11,7 @@ if(isset($_POST['senden'])) {
 		if(!empty($_POST['addbill_'.$a]) AND $_POST['addbill_'.$a] > 0) {
 			if($_POST['send_mail']=='on'){ $changed[$a]=1; } // hier ist a die id des users 
 			else { echo 'Es wurden absichtlich keine Mails verschickt!'; }
-			if(!mysql_query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
+			if(!$mysqli->query( "INSERT INTO `aka_verbrauch` (`id` ,`value`, `date`) VALUES ('".$a."', '".$_POST['addbill_'.$a]."', ".$time.")" )){
 				echo 'ohoh';
 				};
 			};

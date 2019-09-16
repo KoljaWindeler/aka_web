@@ -11,7 +11,7 @@ if(isset($_POST['senden'])) {
 		if(!empty($_POST['addmoney_'.$a]) AND $_POST['addmoney_'.$a] <> '0') {
 			$money=str_replace(",",".",$_POST['addmoney_'.$a]);
 			$changed[$a]=1;
-			if(!mysql_query( "INSERT INTO `aka_money` (`id` ,`value`, `date`) VALUES ('".$a."', '".$money."', ".$time.")" )){
+			if(!$mysqli->query( "INSERT INTO `aka_money` (`id` ,`value`, `date`) VALUES ('".$a."', '".$money."', ".$time.")" )){
 				echo 'ohoh';
 				};
 			};
