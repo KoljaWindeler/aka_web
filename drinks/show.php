@@ -1,7 +1,8 @@
 <?php
-session_start();
+###session_start();
 $id = intval($_GET['id']);
-$del = intval($_GET['del']);
+if(!empty($_GET['del']))
+{$del = intval($_GET['del']);}
 ############ löschen ####################
 if($_SESSION['session_user_typ']==$aka_drinks_admin_state || $_SESSION['session_user_typ']==$aka_super_admin_state){ // admin check
 	if(!empty($del) && !empty($id)){
@@ -24,11 +25,11 @@ if($_SESSION['session_user_typ']==$aka_drinks_admin_state || $_SESSION['session_
 	};
 ############ löschen ####################
 ############ Kontobewegung ###############
-$eintrag='';
+$eintrag=array();
 $k=0;
 
-$abfrage="SELECT `value`,`date` FROM `aka_money` WHERE `ID`=".$id."";
-$erg=mysqli_db_query($db,$abfrage,$verbindung);
+$abfrage="SELECT `value`,`date` FROM `aka_money` WHERE `ID`=".$id." ";
+$erg=$mysqli->query($abfrage);
 while(list($db_value,$db_date) = mysqli_fetch_row($erg)) {
 	$eintrag[$k][0]=$db_date;
 	$eintrag[$k][1]=$db_value; 
@@ -39,8 +40,8 @@ while(list($db_value,$db_date) = mysqli_fetch_row($erg)) {
 	$k++;};
 
 $l=0;
-$abfrage="SELECT `value`,`date` FROM `aka_verbrauch` WHERE `ID`=".$id."";
-$erg=mysqli_db_query($db,$abfrage,$verbindung);
+$abfrage="SELECT `value`,`date` FROM `aka_verbrauch` WHERE `ID`=".$id." ";
+$erg=$mysqli->query($abfrage);
 while(list($db_value,$db_date) = mysqli_fetch_row($erg)) {
 	$eintrag[$k][0]=$db_date;
 	$eintrag[$k][1]='-';
