@@ -2,6 +2,7 @@
 $abfrage="SELECT `ID`, `Name`,`EMAIL`, `LAST_MAIL` FROM `aka_id`";
 $erg=$mysqli->query($abfrage);
 $a=0;
+$daten=[];
 while(list($db_id,$db_name,$db_email,$db_email_pol) = mysqli_fetch_row($erg)) {
 	$daten[$a][0]=$db_id; 
 	$daten[$a][1]=$db_name;
