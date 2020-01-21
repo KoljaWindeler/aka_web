@@ -75,7 +75,7 @@ if(!empty($_POST['save'])){
 #echo "<font size=\"72\" color=\"red\"> ICH BAUE GERADE UM,FUNKTIONSAUSFALL MÖGLICH</font><br>";
 tab_go("100%",250,'left','Neue Reservierung');
 if($recover==1){
-	$result=java_cal2('',$_POST['j_from_time-ts'],$_POST['j_to_time-ts'],time(),mktime(0,0,0,1,1,2020),'_time','h,i',false);
+	$result=java_cal2('',$_POST['j_from_time-ts'],$_POST['j_to_time-ts'],time(),mktime(0,0,0,1,1,2030),'_time','h,i',false);
 	$wer=$_POST['name'];
 	$warum=$_POST['warum'];
 	$wo=$_POST['wo'];
@@ -89,7 +89,7 @@ if($recover==1){
 		$info='<font color="red"><b>Abgelehnt, in diesem Zeitraum ist der Platz bereits reserviert!</b></font>';				
 	};
 } else {
-	$result=java_cal2('',floor(time()/3600)*3600,floor(time()/3600)*3600+3600*3,time(),mktime(0,0,0,1,1,2020),'_time','h,i',false);
+	$result=java_cal2('',floor(time()/3600)*3600,floor(time()/3600)*3600+3600*3,time(),mktime(0,0,0,1,1,2030),'_time','h,i',false);
 	$wer='';
 	$wo='';
 	$warum='';
